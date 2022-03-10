@@ -1,5 +1,34 @@
+<script setup lang="ts">
+import { ref } from "vue";
+
+import Header from "./components/Header.vue";
+
+const title = ref("Métricas SaaS");
+
+const currentTheme = ref(localStorage.getItem("theme-color") || "theme-light");
+
+function switchTheme() {
+  const storedTheme = localStorage.getItem("theme-color");
+  if (storedTheme === "theme-dark") {
+    localStorage.setItem("theme-color", "theme-light");
+    currentTheme.value = localStorage.getItem("theme-color");
+  } else {
+    localStorage.setItem("theme-color", "theme-dark");
+    currentTheme.value = localStorage.getItem("theme-color");
+  }
+}
+</script>
+
 <template>
-  <div id="page" :class="currentTheme"></div>
+  <div id="page" :class="currentTheme">
+    <Header
+      :title="title"
+      :currentTheme="currentTheme"
+      @switchTheme="() => switchTheme()"
+    />
+
+    <main></main>
+  </div>
 </template>
 
 <style>
