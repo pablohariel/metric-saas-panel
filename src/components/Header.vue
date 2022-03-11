@@ -66,7 +66,7 @@ function switchTheme(): void {
   color: var(--color-text);
 }
 
-div {
+.header div {
   flex: 1;
   display: flex;
   align-items: center;

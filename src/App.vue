@@ -2,6 +2,7 @@
 import { ref } from "vue";
 
 import Header from "./components/Header.vue";
+import CompanyMetrics from "./components/CompanyMetrics.vue";
 
 const title = ref("Métricas SaaS");
 
@@ -11,10 +12,10 @@ function switchTheme() {
   const storedTheme = localStorage.getItem("theme-color");
   if (storedTheme === "theme-dark") {
     localStorage.setItem("theme-color", "theme-light");
-    currentTheme.value = localStorage.getItem("theme-color");
+    currentTheme.value = localStorage.getItem("theme-color") || "theme-light";
   } else {
     localStorage.setItem("theme-color", "theme-dark");
-    currentTheme.value = localStorage.getItem("theme-color");
+    currentTheme.value = localStorage.getItem("theme-color") || "theme-dark";
   }
 }
 </script>
@@ -27,7 +28,9 @@ function switchTheme() {
       @switchTheme="() => switchTheme()"
     />
 
-    <main></main>
+    <main>
+      <CompanyMetrics />
+    </main>
   </div>
 </template>
 

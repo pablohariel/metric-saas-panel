@@ -6,7 +6,11 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "isolatedModules": false
+    "allowJs": true,
+    "isolatedModules": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "strict": true,
   },
 
   "references": [
