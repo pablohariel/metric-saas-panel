@@ -28,3 +28,10 @@ Inicie o projeto
 ```bash
   npm run dev
 ```
+
+
+## Variáveis de Ambiente
+
+Para rodar este projeto, você precisa adicionar a seguinte variável de ambiente no seu arquivo .env
+
+`VITE_API_TOKEN`

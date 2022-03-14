@@ -1,16 +1,41 @@
 <script setup lang="ts">
-import LineChart from "../charts/LineChart.vue";
+import { ref, computed, watch } from "vue";
 
+import type { IJoinedDate } from "../../utils/joinDates";
+
+import LineChart from "../charts/LineChart.vue";
 import ContractIcon from "../../assets/icons/contract.svg";
+import { joinDates } from "../../utils/joinDates";
+import { useStore } from "@/store";
+
+const dates = ref<IJoinedDate[]>([]);
+
+const store = useStore();
+const contracts = computed(() => store.state.contracts);
+
+watch(contracts, () => {
+  if (contracts.value.length > 0) {
+    let datesToParse = [] as Date[];
+
+    for (const contract of contracts.value) {
+      datesToParse.push(new Date(contract.createdAt));
+    }
+
+    datesToParse = datesToParse.sort((a: any, b: any) => b - a);
+
+    const datesParsed = joinDates({ dates: datesToParse });
+    dates.value = datesParsed.slice(0, 12).reverse();
+  }
+});
 </script>
 
 <template>
   <div class="contracts-card">
     <img class="contracts-card__icon" :src="ContractIcon" alt="Contract icon" />
-    <h3 class="contracts-card__value">300</h3>
+    <h3 class="contracts-card__value">{{ contracts.length }}</h3>
     <p class="contracts-card__title">Total de contratos</p>
 
-    <LineChart />
+    <LineChart v-if="dates.length > 0" :dates="dates" />
   </div>
 </template>
 

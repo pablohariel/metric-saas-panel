@@ -8,7 +8,6 @@ interface ISimpleLineChartProps {
 }
 
 const props = defineProps<ISimpleLineChartProps>();
-
 Chart.register(...registerables);
 
 const data = computed(() => ({

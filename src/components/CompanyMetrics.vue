@@ -8,6 +8,17 @@ import MrrIcon from "../assets/icons/mrr.svg";
 import ArrIcon from "../assets/icons/arr.svg";
 import MvIcon from "../assets/icons/mv.svg";
 import LtvIcon from "../assets/icons/ltv.svg";
+import { computed, ref, watch } from "vue";
+import { useStore } from "@/store";
+import { getMrr } from "@/utils/metrics/getMrr";
+
+const mrrValue = ref(0);
+const store = useStore();
+
+const contracts = computed(() => store.state.contracts);
+watch(contracts, () => {
+  mrrValue.value = getMrr({ contracts: contracts.value });
+});
 </script>
 
 <template>
@@ -17,7 +28,11 @@ import LtvIcon from "../assets/icons/ltv.svg";
     <div class="company-metrics__content">
       <TotalContracts class="company-metrics__contracts-card" />
 
-      <SimpleMetric :iconPath="MrrIcon" title="MRR" value="R$ 60.000" />
+      <SimpleMetric
+        :iconPath="MrrIcon"
+        title="MRR"
+        :value="`R$ ${mrrValue.toLocaleString()}`"
+      />
       <SimpleMetric :iconPath="ArrIcon" title="ARR" value="R$ 800.000" />
       <SimpleMetric :iconPath="MvIcon" title="MV" value="2 anos" />
       <SimpleMetric :iconPath="LtvIcon" title="LTV" value="R$ 5.000" />

@@ -12,7 +12,6 @@
     "moduleResolution": "node",
     "strict": true,
   },
-
   "references": [
     {
       "path": "./tsconfig.vite-config.json"

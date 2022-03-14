@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import { useStore } from "./store";
 import Header from "./components/Header.vue";
 import CompanyMetrics from "./components/CompanyMetrics.vue";
+
+const store = useStore();
+store.dispatch("getContracts");
+store.dispatch("getPayments");
 
 const title = ref("Métricas SaaS");
 

@@ -1,30 +1,25 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, watch } from "vue";
 import { LineChart } from "vue-chart-3";
 import { Chart, registerables } from "chart.js";
+
+import type { IJoinedDate } from "../../utils/joinDates";
+
+interface ILineChartProps {
+  dates: IJoinedDate[];
+}
+
+const { dates = [] } = defineProps<ILineChartProps>();
 
 Chart.register(...registerables);
 
 const data = computed(() => ({
-  labels: [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro",
-  ],
+  labels: dates.length > 0 ? dates.map((date) => date.month) : [],
 
   datasets: [
     {
-      label: "Contratos",
-      data: [25, 19, 30, 31, 26, 35, 40, 50, 60, 60, 83, 92],
+      label: "Novos contratos",
+      data: dates.length > 0 ? dates.map((date) => date.amount) : [],
       fill: true,
       backgroundColor: "rgba(183, 177, 247, 1)",
       borderColor: "#7E72F2",
@@ -69,10 +64,11 @@ const options = computed(() => ({
   bottom: 0;
   left: 0;
   right: 0;
+  padding-top: 4px;
 }
 
 .line-chart__content {
-  max-height: 100%;
+  max-height: 60%;
   max-width: 100%;
 }
 </style>
