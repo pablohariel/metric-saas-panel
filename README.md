@@ -1,23 +1,30 @@
-## Project Setup
+# Painel de Métricas SaaS
 
-```sh
-npm install
+Página de painel de administração responsável por exibir as métricas dos serviços SaaS da agil.net.
+
+
+## Rodar Localmente
+
+Clone o projeto
+
+```bash
+  git clone https://github.com/pablohariel/metric-saas-panel
 ```
 
-### Compile and Hot-Reload for Development
+Vá para o diretório do projeto
 
-```sh
-npm run dev
+```bash
+  cd metric-saas-panel
 ```
 
-### Type-Check, Compile and Minify for Production
+Instale as dependências
 
-```sh
-npm run build
+```bash
+  npm install
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+Inicie o projeto
 
-```sh
-npm run lint
+```bash
+  npm run dev
 ```
