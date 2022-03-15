@@ -4,10 +4,12 @@ import { ref } from "vue";
 import { useStore } from "./store";
 import Header from "./components/Header.vue";
 import CompanyMetrics from "./components/CompanyMetrics.vue";
+import CustomerStatistics from "./components/CustomerStatistics.vue";
 
 const store = useStore();
 store.dispatch("getContracts");
 store.dispatch("getPayments");
+store.dispatch("getCustomers");
 
 const title = ref("Métricas SaaS");
 
@@ -35,6 +37,7 @@ function switchTheme() {
 
     <main>
       <CompanyMetrics />
+      <CustomerStatistics />
     </main>
   </div>
 </template>
@@ -64,6 +67,12 @@ function switchTheme() {
 
   --color-heading: var(--vt-c-text-light);
   --color-text: var(--vt-c-text-light);
+
+  --color-text-table-header: #fff;
+  --color-background-table-header: #2c2c2c;
+  --color-background-table-row-primary: #fff;
+  --color-background-table-row-alternate: #f9fafc;
+  --color-box-shadow-table: #e6e7e9;
 }
 
 #page.theme-dark {
@@ -73,5 +82,11 @@ function switchTheme() {
 
   --color-heading: var(--vt-c-text-dark);
   --color-text: var(--vt-c-text-dark);
+
+  --color-text-table-header: #fff;
+  --color-background-table-header: var(--vt-c-black);
+  --color-background-table-row-primary: var(--vt-c-black-soft);
+  --color-background-table-row-alternate: #2c2c2c;
+  --color-box-shadow-table: #2c2c2c;
 }
 </style>

@@ -61,7 +61,6 @@ watch(contracts, () => {
   display: grid;
   grid-template: 162px 162px 500px / 1.2fr 1fr 1fr;
   gap: 28px;
-  margin-bottom: 60px;
 }
 
 .company-metrics__contracts-card {

@@ -1,13 +1,15 @@
-import { api } from '@/services/api'
-import type { InjectionKey } from 'vue'
-import { createStore, Store, useStore as baseUseStore } from 'vuex'
+import { api } from "@/services/api"
+import type { InjectionKey } from "vue"
+import { createStore, Store, useStore as baseUseStore } from "vuex"
 
-import type { IContract } from '../interfaces/Contract'
-import type { IPayment } from '../interfaces/Payment'
+import type { IContract } from "../interfaces/Contract"
+import type { IPayment } from "../interfaces/Payment"
+import type { ICustomer } from "../interfaces/Customer"
 
 interface State {
   contracts: IContract[],
-  payments: IPayment[]
+  payments: IPayment[],
+  customers: ICustomer[]
 }
 
 const key: InjectionKey<Store<State>> = Symbol()
@@ -15,7 +17,8 @@ const key: InjectionKey<Store<State>> = Symbol()
 const store = createStore<State>({
   state: {
     contracts: [],
-    payments: []
+    payments: [],
+    customers: []
   },
 
   mutations: {
@@ -25,6 +28,10 @@ const store = createStore<State>({
 
     setPayments(state, payments) {
       state.payments = payments
+    },
+
+    setCustomers(state, customers) {
+      state.customers = customers
     }
   },
 
@@ -37,7 +44,7 @@ const store = createStore<State>({
       };
 
       const { data } = await api.get<IContract[]>("/contracts.list", config);
-      context.commit('setContracts', data)
+      context.commit("setContracts", data)
     },
 
     async getPayments(context) {
@@ -48,7 +55,18 @@ const store = createStore<State>({
       };
 
       const { data } = await api.get<IPayment[]>("/payments.list", config);
-      context.commit('setPayments', data)
+      context.commit("setPayments", data)
+    },
+
+    async getCustomers(context) {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
+        },
+      };
+
+      const { data } = await api.get<ICustomer[]>("/customers.statistics", config);
+      context.commit("setCustomers", data)
     }
   }
   
