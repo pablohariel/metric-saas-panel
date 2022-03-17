@@ -8,6 +8,7 @@ export interface IJoinedDate {
   month: string
 }
 
+// join dates by month
 const joinDates = ({ dates }: IParams): Array<IJoinedDate> => {
   const joinedDates = [] as IJoinedDate[]
 

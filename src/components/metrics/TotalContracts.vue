@@ -1,19 +1,24 @@
 <script setup lang="ts">
 import { ref, computed, watch } from "vue";
 
-import type { IJoinedDate } from "../../utils/joinDates";
-
-import LineChart from "../charts/LineChart.vue";
-import ContractIcon from "../../assets/icons/contract.svg";
 import { joinDates } from "../../utils/joinDates";
 import { useStore } from "@/store";
+import { getActiveContracts } from "@/utils/metrics/getActiveContracts";
+
+import type { IJoinedDate } from "../../utils/joinDates";
+import ContractIcon from "../../assets/icons/contract.svg";
+import LineChart from "../charts/LineChart.vue";
 
 const dates = ref<IJoinedDate[]>([]);
 
 const store = useStore();
 const contracts = computed(() => store.state.contracts);
+const activeContractsAmount = ref(0);
 
 watch(contracts, () => {
+  const activeContracts = getActiveContracts({ contracts: contracts.value });
+  activeContractsAmount.value = activeContracts.length;
+
   if (contracts.value.length > 0) {
     let datesToParse = [] as Date[];
 
@@ -32,7 +37,7 @@ watch(contracts, () => {
 <template>
   <div class="contracts-card">
     <img class="contracts-card__icon" :src="ContractIcon" alt="Contract icon" />
-    <h3 class="contracts-card__value">{{ contracts.length }}</h3>
+    <h3 class="contracts-card__value">{{ activeContractsAmount }}</h3>
     <p class="contracts-card__title">Total de contratos</p>
 
     <LineChart v-if="dates.length > 0" :dates="dates" />

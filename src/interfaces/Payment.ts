@@ -11,7 +11,7 @@ interface IPayment {
   dueDate: string,
   originalDueDate: string,
   paidAt?: string,
-  paymentMethod?: string,
+  paymentMethod?: 'credit_card' | 'billet' | 'pix',
   receivedAt?: string,
   status: string,
   createdAt: string,

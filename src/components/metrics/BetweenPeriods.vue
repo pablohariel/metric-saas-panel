@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Datepicker from "vue3-date-time-picker";
+import Datepicker from "vue3-datepicker";
 
 import CacCard from "./Cac.vue";
 import ChurnCard from "./Churn.vue";
 
-const fromdate = ref();
-const untiDate = ref();
+const dateNow = new Date();
+
+const initialDate = ref(new Date(dateNow.getFullYear(), dateNow.getMonth(), 1));
+const finalDate = ref(new Date(dateNow.getFullYear(), dateNow.getMonth() + 1, 0));
 </script>
 
 <template>
@@ -18,25 +20,15 @@ const untiDate = ref();
 
       <p class="between-periods-card__datapicker-wrapper">
         entre
-        <Datepicker
-          class="between-periods-card__datapicker"
-          v-model="fromdate"
-          range
-          auto-range="5"
-        />
+        <datepicker class="between-periods-card__datapicker" v-model="initialDate" />
         e
-        <Datepicker
-          class="between-periods-card__datapicker"
-          v-model="untiDate"
-          range
-          auto-range="5"
-        />
+        <datepicker class="between-periods-card__datapicker" v-model="finalDate" />
       </p>
     </div>
 
     <div class="between-periods-card__content">
-      <CacCard />
-      <ChurnCard />
+      <CacCard :initialDate="initialDate" :finalDate="finalDate" />
+      <ChurnCard :initialDate="initialDate" :finalDate="finalDate" />
     </div>
   </div>
 </template>
@@ -67,11 +59,28 @@ const untiDate = ref();
 .between-periods-card__datapicker-wrapper {
   display: flex;
   align-items: center;
+  --vdp-selected-bg-color: #2c2c2c;
+  --vdp-hover-bg-color: #2c2c2c;
+  --vdp-text-color: var(--color-text);
+  --vdp-bg-color: var(--color-background-soft);
+  --vdp-heading-hover-color: var(--color-background);
+  --vdp-disabled-color: var(--color-background);
 }
 
 .between-periods-card__datapicker {
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 6px;
+  max-width: 80px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+
+  color: var(--color-text);
+}
+
+.between-periods-card__datapicker:focus {
+  outline: none;
 }
 
 .between-periods-card__content {

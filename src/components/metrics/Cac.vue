@@ -1,5 +1,35 @@
 <script setup lang="ts">
+import { computed, ref, watch } from "vue";
+
+import { useStore } from "@/store";
+import { getCac } from "@/utils/metrics/getCac";
+
 import SimpleLineChart from "../charts/SimpleLineChart.vue";
+
+interface ICacProps {
+  initialDate: Date;
+  finalDate: Date;
+}
+
+const props = defineProps<ICacProps>();
+
+const initialDate = computed(() => props.initialDate);
+const finalDate = computed(() => props.finalDate);
+
+const store = useStore();
+const contracts = computed(() => store.state.contracts);
+
+const cacValue = ref(0);
+const investmentAmount = ref(0);
+
+watch([contracts, initialDate, finalDate, investmentAmount], () => {
+  cacValue.value = getCac({
+    contracts: contracts.value,
+    investmentAmount: investmentAmount.value,
+    initialDate: initialDate.value,
+    finalDate: finalDate.value,
+  });
+});
 </script>
 
 <template>
@@ -7,7 +37,9 @@ import SimpleLineChart from "../charts/SimpleLineChart.vue";
     <div class="cac-card__header">
       <div class="cac-card__data">
         <h4 class="cac-card__title">CAC</h4>
-        <span class="cac-card__value">R$ 15</span>
+        <span class="cac-card__value">{{
+          cacValue.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
+        }}</span>
       </div>
       <div class="cac-card__input-wrapper">
         <label for="invested-amount">R$</label>
@@ -16,6 +48,7 @@ import SimpleLineChart from "../charts/SimpleLineChart.vue";
           class="cac-card__input"
           type="number"
           placeholder="Valor investido"
+          v-model="investmentAmount"
         />
       </div>
     </div>

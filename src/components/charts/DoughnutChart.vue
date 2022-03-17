@@ -3,17 +3,25 @@ import { computed } from "vue";
 import { DoughnutChart } from "vue-chart-3";
 import { Chart, registerables } from "chart.js";
 
+interface IDoughnutChartProps {
+  labels: string[];
+  data: number[];
+  colors: string[];
+}
+
+const props = defineProps<IDoughnutChartProps>();
+
 Chart.register(...registerables);
 
 const data = computed(() => ({
-  labels: ["Cartão", "Boleto", "Pix"],
+  labels: props.labels,
 
   datasets: [
     {
       label: "Porcentagem",
-      data: [40, 30, 30],
+      data: props.data,
       fill: true,
-      backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
+      backgroundColor: props.colors,
     },
   ],
 }));
@@ -53,7 +61,6 @@ const options = computed(() => ({
 
 <style>
 .doughnut-chart__content {
-  max-height: 70%;
-  max-width: 70%;
+  max-height: 90%;
 }
 </style>

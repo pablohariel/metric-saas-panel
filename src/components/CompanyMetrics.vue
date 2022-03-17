@@ -1,4 +1,14 @@
 <script setup lang="ts">
+import { computed, ref, watch } from "vue";
+
+import { useStore } from "@/store";
+import { getMrr } from "@/utils/metrics/getMrr";
+import { getArr } from "@/utils/metrics/getArr";
+import { groupContracts } from "@/utils/groupContracts";
+import { getActiveContracts } from "@/utils/metrics/getActiveContracts";
+import { getMv } from "@/utils/metrics/getMv";
+import { getLtv } from "@/utils/metrics/getLtv";
+
 import TotalContracts from "./metrics/TotalContracts.vue";
 import SimpleMetric from "./metrics/SimpleMetric.vue";
 import BetweenPeriods from "./metrics/BetweenPeriods.vue";
@@ -8,16 +18,25 @@ import MrrIcon from "../assets/icons/mrr.svg";
 import ArrIcon from "../assets/icons/arr.svg";
 import MvIcon from "../assets/icons/mv.svg";
 import LtvIcon from "../assets/icons/ltv.svg";
-import { computed, ref, watch } from "vue";
-import { useStore } from "@/store";
-import { getMrr } from "@/utils/metrics/getMrr";
 
 const mrrValue = ref(0);
+const arrValue = ref(0);
+const mvValue = ref("");
+const ltvValue = ref(0);
+
 const store = useStore();
 
 const contracts = computed(() => store.state.contracts);
+
 watch(contracts, () => {
-  mrrValue.value = getMrr({ contracts: contracts.value });
+  const activeContracts = getActiveContracts({ contracts: contracts.value });
+  const groupedContracts = groupContracts({ contracts: contracts.value });
+  const deletedContracts = contracts.value.filter((c) => c.deletedAt);
+
+  mvValue.value = getMv({ deletedContracts });
+  mrrValue.value = getMrr({ contracts: activeContracts });
+  arrValue.value = getArr({ groupedContracts });
+  ltvValue.value = getLtv({ deletedContracts });
 });
 </script>
 
@@ -31,11 +50,19 @@ watch(contracts, () => {
       <SimpleMetric
         :iconPath="MrrIcon"
         title="MRR"
-        :value="`R$ ${mrrValue.toLocaleString()}`"
+        :value="mrrValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })"
       />
-      <SimpleMetric :iconPath="ArrIcon" title="ARR" value="R$ 800.000" />
-      <SimpleMetric :iconPath="MvIcon" title="MV" value="2 anos" />
-      <SimpleMetric :iconPath="LtvIcon" title="LTV" value="R$ 5.000" />
+      <SimpleMetric
+        :iconPath="ArrIcon"
+        title="ARR"
+        :value="arrValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })"
+      />
+      <SimpleMetric :iconPath="MvIcon" title="MV" :value="mvValue" />
+      <SimpleMetric
+        :iconPath="LtvIcon"
+        title="LTV"
+        :value="ltvValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })"
+      />
 
       <BetweenPeriods class="company-metrics__cac-card" />
       <Fp class="company-metrics__fp-card" />
