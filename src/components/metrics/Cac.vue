@@ -5,6 +5,9 @@ import { useStore } from "@/store";
 import { getCac } from "@/utils/metrics/getCac";
 
 import SimpleLineChart from "../charts/SimpleLineChart.vue";
+import { sortContracts } from "@/utils/sortContracts";
+import { getCacChartData } from "@/utils/charts/getCacData";
+import type { ICacChartData } from "@/utils/charts/getCacData";
 
 interface ICacProps {
   initialDate: Date;
@@ -12,15 +15,14 @@ interface ICacProps {
 }
 
 const props = defineProps<ICacProps>();
-
-const initialDate = computed(() => props.initialDate);
-const finalDate = computed(() => props.finalDate);
-
 const store = useStore();
-const contracts = computed(() => store.state.contracts);
 
 const cacValue = ref(0);
+const cacChartData = ref<ICacChartData[]>([]);
 const investmentAmount = ref(0);
+const initialDate = computed(() => props.initialDate);
+const finalDate = computed(() => props.finalDate);
+const contracts = computed(() => store.state.contracts);
 
 watch([contracts, initialDate, finalDate, investmentAmount], () => {
   cacValue.value = getCac({
@@ -29,7 +31,22 @@ watch([contracts, initialDate, finalDate, investmentAmount], () => {
     initialDate: initialDate.value,
     finalDate: finalDate.value,
   });
+
+  const sortedContracts = sortContracts({
+    contracts: contracts.value,
+    sortBy: "createdAt",
+  });
+
+  cacChartData.value = getCacChartData({
+    contracts: sortedContracts,
+    initialDate: initialDate.value,
+    finalDate: finalDate.value,
+  });
 });
+
+function handleInvestmentAmount(event: any) {
+  investmentAmount.value = event.target.value;
+}
 </script>
 
 <template>
@@ -48,13 +65,13 @@ watch([contracts, initialDate, finalDate, investmentAmount], () => {
           class="cac-card__input"
           type="number"
           placeholder="Valor investido"
-          v-model="investmentAmount"
+          v-on:blur="handleInvestmentAmount"
         />
       </div>
     </div>
 
     <div class="cac-card__chart">
-      <SimpleLineChart color="#2DCD7A" />
+      <SimpleLineChart label="Novos contratos" color="#2DCD7A" :data="cacChartData" />
     </div>
   </div>
 </template>

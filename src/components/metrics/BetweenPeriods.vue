@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import Datepicker from "vue3-datepicker";
+import { add } from "date-fns";
 
 import CacCard from "./Cac.vue";
 import ChurnCard from "./Churn.vue";
 
-const dateNow = new Date();
-
-const initialDate = ref(new Date(dateNow.getFullYear(), dateNow.getMonth(), 1));
-const finalDate = ref(new Date(dateNow.getFullYear(), dateNow.getMonth() + 1, 0));
+const initialDate = ref(add(new Date(), { years: -1 }));
+const finalDate = ref(new Date());
 </script>
 
 <template>

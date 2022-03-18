@@ -6,6 +6,10 @@ import { getChurn } from "@/utils/metrics/getChurn";
 
 import SimpleLineChart from "../charts/SimpleLineChart.vue";
 
+import { getChurnChartData } from "@/utils/charts/getChurnData";
+import type { IChurnChartData } from "@/utils/charts/getChurnData";
+import { sortContracts } from "@/utils/sortContracts";
+
 interface IChurnProps {
   initialDate: Date;
   finalDate: Date;
@@ -15,6 +19,7 @@ const props = defineProps<IChurnProps>();
 const store = useStore();
 
 const churnValue = ref(0);
+const churnChartData = ref<IChurnChartData[]>([]);
 const initialDate = computed(() => props.initialDate);
 const finalDate = computed(() => props.finalDate);
 const contracts = computed(() => store.state.contracts);
@@ -22,6 +27,19 @@ const contracts = computed(() => store.state.contracts);
 watch([contracts, initialDate, finalDate], () => {
   churnValue.value = getChurn({
     contracts: contracts.value,
+    initialDate: initialDate.value,
+    finalDate: finalDate.value,
+  });
+
+  const deletedContracts = contracts.value.filter((contract) => contract.deletedAt);
+
+  const sortedDeletedContracts = sortContracts({
+    contracts: deletedContracts,
+    sortBy: "deletedAt",
+  });
+
+  churnChartData.value = getChurnChartData({
+    deletedContracts: sortedDeletedContracts,
     initialDate: initialDate.value,
     finalDate: finalDate.value,
   });
@@ -38,7 +56,11 @@ watch([contracts, initialDate, finalDate], () => {
     </div>
 
     <div class="churn-card__chart">
-      <SimpleLineChart color="#EA5455" />
+      <SimpleLineChart
+        label="Contratos cancelados"
+        color="#EA5455"
+        :data="churnChartData"
+      />
     </div>
   </div>
 </template>

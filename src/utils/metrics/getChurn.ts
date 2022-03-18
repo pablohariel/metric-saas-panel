@@ -27,15 +27,13 @@ const getChurn = ( { contracts, initialDate, finalDate }: IParams ): number => {
     if(contract.deletedAt) {
       const contractDeleteDate = new Date(contract.deletedAt)
       if(contractDeleteDate >= initialDate && contractDeleteDate <= finalDate) {
-        console.log('hi')
         canceledContractsAmount++
       }
     }
   }
-
   const churn = (canceledContractsAmount / actitiveContractsAmount) * 100
 
-  return churn
+  return actitiveContractsAmount === 0 ? 0 : churn
 }
 
 export{ getChurn }

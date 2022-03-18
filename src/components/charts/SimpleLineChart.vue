@@ -2,34 +2,26 @@
 import { computed } from "vue";
 import { LineChart } from "vue-chart-3";
 import { Chart, registerables } from "chart.js";
+import type { IChurnChartData } from "@/utils/charts/getChurnData";
+import type { ICacChartData } from "@/utils/charts/getCacData";
 
 interface ISimpleLineChartProps {
+  label: string;
   color: string;
+  data: IChurnChartData[] | ICacChartData[];
 }
 
 const props = defineProps<ISimpleLineChartProps>();
+
 Chart.register(...registerables);
 
 const data = computed(() => ({
-  labels: [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro",
-  ],
+  labels: props.data.map((item) => item.month),
 
   datasets: [
     {
-      label: "Contratos",
-      data: [25, 19, 30, 31, 26, 35, 40, 50, 60, 60, 83, 92],
+      label: props.label,
+      data: props.data.map((item) => item.amount),
       fill: false,
       borderColor: props.color,
       tension: 0.1,
