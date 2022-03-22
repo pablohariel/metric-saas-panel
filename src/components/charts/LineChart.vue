@@ -60,15 +60,20 @@ const options = computed(() => ({
 <style>
 .line-chart {
   position: absolute;
-  max-height: 100%;
+  max-height: 130px;
+  height: 130px;
   bottom: 0;
   left: 0;
   right: 0;
-  padding-top: 4px;
+  border-radius: 0px 0px 10px 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
 }
 
 .line-chart__content {
-  max-height: 60%;
+  max-height: 90%;
   max-width: 100%;
+  width: 100%;
 }
 </style>

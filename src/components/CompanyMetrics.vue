@@ -101,4 +101,25 @@ watch(contracts, () => {
   grid-column-start: 1;
   grid-column-end: 3;
 }
+
+@media (max-width: 480px) {
+  .company-metrics {
+    display: flex;
+    flex-direction: column;
+    min-width: 90vw;
+    max-width: 90vw;
+    margin-top: 50px;
+  }
+
+  .company-metrics__content {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .company-metrics__contracts-card {
+    min-height: 320px;
+  }
+}
 </style>

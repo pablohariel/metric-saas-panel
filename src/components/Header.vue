@@ -93,13 +93,63 @@ function switchTheme() {
   justify-content: right;
 }
 
-.header__theme-icon svg {
-  color: red;
-}
-
 .header__btn {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .header {
+    width: 90vw;
+  }
+  .header__logo img {
+    max-height: 28px;
+  }
+
+  .header__theme-icon img {
+    max-height: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 20px;
+  }
+
+  .header__logo img {
+    max-height: 24px;
+  }
+
+  .header__theme-icon img {
+    max-height: 24px;
+  }
+
+  .header__title {
+    flex: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__title h1 {
+    max-width: 50%;
+  }
+  .header__logo img {
+    max-height: 22px;
+  }
+
+  .header__logo {
+  }
+
+  .header__theme-icon {
+    align-items: center;
+  }
+
+  .header__theme-icon img {
+    max-height: 22px;
+  }
 }
 </style>

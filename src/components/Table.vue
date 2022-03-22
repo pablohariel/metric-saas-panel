@@ -161,7 +161,7 @@ function sortTable(sortBy: SORT_CUSTOMER_TABLE_OPTIONS) {
   </table>
 </template>
 
-<style>
+<style scoped>
 .customer-table {
   border-collapse: collapse;
   font-size: 1.4rem;

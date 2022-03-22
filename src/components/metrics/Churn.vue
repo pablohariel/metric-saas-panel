@@ -65,10 +65,9 @@ watch([contracts, initialDate, finalDate], () => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .churn-card {
   flex: 1;
-  padding-left: 30px;
 }
 
 .churn-card__title {
@@ -77,5 +76,11 @@ watch([contracts, initialDate, finalDate], () => {
 
 .churn-card__value {
   font-size: 2.4rem;
+}
+
+@media (max-width: 480px) {
+  .churn-card__chart {
+    margin-top: 20px;
+  }
 }
 </style>

@@ -63,7 +63,29 @@ const options = computed(() => ({
 </template>
 
 <style>
+.simple-line-chart {
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+
 .simple-line-chart__content {
-  max-height: 80%;
+  max-height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .simple-line-chart {
+    height: 180px;
+    display: flex;
+    align-items: flex-end;
+    margin-top: 0px;
+  }
+
+  .simple-line-chart__content {
+    max-height: 90%;
+    width: 100%;
+  }
 }
 </style>

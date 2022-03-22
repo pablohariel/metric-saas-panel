@@ -44,7 +44,7 @@ watch(contracts, () => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .contracts-card {
   position: relative;
   background-color: var(--color-background);
@@ -67,5 +67,11 @@ watch(contracts, () => {
 .contracts-card__icon {
   max-width: 90px;
   max-height: 90px;
+}
+
+@media (max-width: 480px) {
+  .contracts-card {
+    padding: 20px 30px 0px 30px;
+  }
 }
 </style>

@@ -268,4 +268,32 @@ function sortTable(sortByEmit: SORT_CUSTOMER_TABLE_OPTIONS) {
 .customer-statistics__invisible-block {
   flex: 1;
 }
+
+@media (max-width: 480px) {
+  .customer-statistics__table-handler {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .table-handler__search-input {
+    margin-top: 10px;
+  }
+
+  .customer-statistics__table {
+    max-width: 90vw;
+  }
+
+  .customer-statistics__footer {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .customer-statistics__total-results {
+    align-self: flex-start;
+  }
+
+  .customer-statistics__pagination {
+    margin-top: 10px;
+  }
+}
 </style>

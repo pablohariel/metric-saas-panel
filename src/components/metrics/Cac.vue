@@ -76,7 +76,7 @@ function handleInvestmentAmount(event: any) {
   </div>
 </template>
 
-<style>
+<style scoped>
 .cac-card {
   flex: 1;
   padding-right: 30px;
@@ -110,5 +110,15 @@ function handleInvestmentAmount(event: any) {
 
 .cac-card__input:focus {
   outline: none;
+}
+
+@media (max-width: 480px) {
+  .cac-card {
+    padding-right: 0;
+  }
+
+  .cac-card__chart {
+    margin-top: 20px;
+  }
 }
 </style>

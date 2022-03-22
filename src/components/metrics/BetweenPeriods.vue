@@ -15,7 +15,7 @@ const finalDate = ref(new Date());
     <h3 class="between-periods-card__title">Métricas entre periodos</h3>
 
     <div class="between-periods-card__divider">
-      <span>Período</span>
+      <span class="between-periods-card__subtitle">Período</span>
 
       <p class="between-periods-card__datapicker-wrapper">
         entre
@@ -27,7 +27,11 @@ const finalDate = ref(new Date());
 
     <div class="between-periods-card__content">
       <CacCard :initialDate="initialDate" :finalDate="finalDate" />
-      <ChurnCard :initialDate="initialDate" :finalDate="finalDate" />
+      <ChurnCard
+        class="between-periods__churn-card"
+        :initialDate="initialDate"
+        :finalDate="finalDate"
+      />
     </div>
   </div>
 </template>
@@ -74,7 +78,7 @@ const finalDate = ref(new Date());
   padding: 0;
   cursor: pointer;
   background-color: transparent;
-
+  font-size: 1.4rem;
   color: var(--color-text);
 }
 
@@ -87,5 +91,37 @@ const finalDate = ref(new Date());
   flex: 1;
   display: flex;
   justify-content: space-between;
+}
+
+.between-periods__churn-card {
+  padding-left: 30px;
+}
+
+@media (max-width: 480px) {
+  .between-periods-card {
+    padding: 20px 30px;
+  }
+
+  .between-periods-card__divider {
+    padding-bottom: 4px;
+  }
+
+  .between-periods-card__datapicker {
+    margin-left: 2px;
+    margin-right: 2px;
+    max-width: 68px;
+    display: flex;
+    text-align: center;
+  }
+
+  .between-periods-card__content {
+    flex-direction: column;
+    min-height: 500px;
+  }
+
+  .between-periods__churn-card {
+    padding-left: 0px;
+    margin-top: 40px;
+  }
 }
 </style>

@@ -34,7 +34,7 @@ watch(payments, () => {
   <div class="fp-card">
     <h3 class="fp-card__title">FP</h3>
 
-    <div>
+    <div class="fp-card__chart">
       <DoughnutChart
         :labels="['Cartão', 'Boleto', 'Pix']"
         :data="[
@@ -63,7 +63,7 @@ watch(payments, () => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .fp-card {
   background-color: var(--color-background);
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.135216);
@@ -115,5 +115,14 @@ watch(payments, () => {
 .legend__text {
   font-size: 1.4rem;
   font-weight: 300;
+}
+
+@media (max-width: 480px) {
+  .fp-card {
+    padding: 20px 30px;
+  }
+  .fp-card__legend {
+    margin-top: 20px;
+  }
 }
 </style>

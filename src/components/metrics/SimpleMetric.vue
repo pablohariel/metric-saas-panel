@@ -19,7 +19,7 @@ defineProps<IMetricCardProps>();
   </div>
 </template>
 
-<style>
+<style scoped>
 .metric-card {
   background-color: var(--color-background);
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.135216);
@@ -48,5 +48,11 @@ defineProps<IMetricCardProps>();
 .metric-card__icon {
   max-width: 90px;
   max-height: 90px;
+}
+
+@media (max-width: 480px) {
+  .metric-card {
+    padding: 20px 30px;
+  }
 }
 </style>
