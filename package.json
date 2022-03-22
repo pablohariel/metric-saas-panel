@@ -12,6 +12,7 @@
     "axios": "^0.26.1",
     "chart.js": "^3.7.1",
     "date-fns": "^2.28.0",
+    "lodash": "^4.17.21",
     "vue": "^3.2.31",
     "vue-chart-3": "^3.1.4",
     "vue3-datepicker": "^0.3.2",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
+    "@types/lodash": "^4.14.180",
     "@vitejs/plugin-vue": "^2.2.2",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^10.0.0",

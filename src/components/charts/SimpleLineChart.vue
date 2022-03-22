@@ -63,9 +63,6 @@ const options = computed(() => ({
 </template>
 
 <style>
-.simple-line-chart {
-}
-
 .simple-line-chart__content {
   max-height: 80%;
 }

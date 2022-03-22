@@ -69,7 +69,7 @@ function switchTheme() {
   --color-text: var(--vt-c-text-light);
 
   --color-text-table-header: #fff;
-  --color-background-table-header: #2c2c2c;
+  --color-background-table-header: #1c1917;
   --color-background-table-row-primary: #fff;
   --color-background-table-row-alternate: #f9fafc;
   --color-box-shadow-table: #e6e7e9;
@@ -85,7 +85,7 @@ function switchTheme() {
 
   --color-text-table-header: #fff;
   --color-background-table-header: var(--vt-c-black);
-  --color-background-table-row-primary: var(--vt-c-black-soft);
+  --color-background-table-row-primary: var(--vt-c-black-mute);
   --color-background-table-row-alternate: #2c2c2c;
   --color-box-shadow-table: #2c2c2c;
 }

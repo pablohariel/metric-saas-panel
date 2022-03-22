@@ -1,4 +1,3 @@
-
 import type { IContract } from "@/interfaces/Contract"
 import { differenceInDays } from 'date-fns'
 

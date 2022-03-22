@@ -11,6 +11,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "strict": true,
+    "suppressImplicitAnyIndexErrors": true,
   },
   "references": [
     {

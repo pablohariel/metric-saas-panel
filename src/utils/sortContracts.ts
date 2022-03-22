@@ -43,8 +43,6 @@ const sortContracts = ({ contracts, sortBy }: IParams): IContract[] => {
         return 0
       })
 
-      console.log(sortedContracts)
-
       return sortedContracts
     }
   }

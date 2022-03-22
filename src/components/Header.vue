@@ -11,7 +11,7 @@ defineProps<IHeaderProps>();
 
 const emit = defineEmits(["switchTheme"]);
 
-function switchTheme(): void {
+function switchTheme() {
   emit("switchTheme");
 }
 </script>

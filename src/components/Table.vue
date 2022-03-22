@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import type { ICustomer } from "@/interfaces/Customer";
+import type { SORT_CUSTOMER_TABLE_OPTIONS } from "@/types/sortTableOptions";
+
+import { formatDate } from "@/utils/table/formatDate";
+import { formatPaymentMethod } from "@/utils/table/formatPaymentMethod";
 
 interface ICustomerTableProps {
   customers: ICustomer[];
@@ -7,12 +11,10 @@ interface ICustomerTableProps {
 
 const { customers } = defineProps<ICustomerTableProps>();
 
-function formatDate(date: string) {
-  return new Date(date).toLocaleString("pt-BR", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
+const emit = defineEmits(["sortTable"]);
+
+function sortTable(sortBy: SORT_CUSTOMER_TABLE_OPTIONS) {
+  emit("sortTable", sortBy);
 }
 </script>
 
@@ -23,26 +25,102 @@ function formatDate(date: string) {
     </caption>
     <thead class="customer-table__header">
       <tr>
-        <th class="customer-table__client" scope="col">Cliente</th>
-        <th class="customer-table__contract" scope="col">Contrato</th>
-        <th class="customer-table__acquisition-date" scope="col">Data de aquisição</th>
-        <th class="customer-table__payment-method" scope="col">Formar de pagamento</th>
-        <th class="customer-table__users" scope="col">Usuários</th>
-        <th class="customer-table__last-lead" scope="col">Último recebimento de lead</th>
-        <th class="customer-table__last-property" scope="col">
+        <th
+          class="customer-table__client"
+          scope="col"
+          @click="() => sortTable('customerName')"
+        >
+          Cliente
+        </th>
+        <th
+          class="customer-table__contract"
+          scope="col"
+          @click="() => sortTable('totalValue')"
+        >
+          Contrato
+        </th>
+        <th
+          class="customer-table__acquisition-date"
+          scope="col"
+          @click="() => sortTable('createdAt')"
+        >
+          Data de aquisição
+        </th>
+        <th
+          class="customer-table__payment-method"
+          scope="col"
+          @click="() => sortTable('paymentMethod')"
+        >
+          Formar de pagamento
+        </th>
+        <th class="customer-table__users" scope="col" @click="() => sortTable('users')">
+          Usuários
+        </th>
+        <th
+          class="customer-table__last-lead"
+          scope="col"
+          @click="() => sortTable('lastLead')"
+        >
+          Último recebimento de lead
+        </th>
+        <th
+          class="customer-table__last-property"
+          scope="col"
+          @click="() => sortTable('lastProperty')"
+        >
           Último cadastro de imóvel
         </th>
-        <th class="customer-table__customers" scope="col">Clientes</th>
-        <th class="customer-table__calls" scope="col">Atendimentos</th>
-        <th class="customer-table__properties" scope="col">Imóveis</th>
-        <th class="customer-table__outdated-properties" scope="col">
+        <th
+          class="customer-table__customers"
+          scope="col"
+          @click="() => sortTable('customers')"
+        >
+          Clientes
+        </th>
+        <th class="customer-table__calls" scope="col" @click="() => sortTable('calls')">
+          Atendimentos
+        </th>
+        <th
+          class="customer-table__properties"
+          scope="col"
+          @click="() => sortTable('properties')"
+        >
+          Imóveis
+        </th>
+        <th
+          class="customer-table__outdated-properties"
+          scope="col"
+          @click="() => sortTable('outdatedProperties')"
+        >
           Imóveis desatualizados
         </th>
-        <th class="customer-table__inactive-properties" scope="col">Imóveis inativos</th>
-        <th class="customer-table__images" scope="col">Imagens</th>
-        <th class="customer-table__condominiums" scope="col">Condomínios</th>
-        <th class="customer-table__portals" scope="col">Portais</th>
-        <th class="customer-table__notes" scope="col">Notas promissórias</th>
+        <th
+          class="customer-table__inactive-properties"
+          scope="col"
+          @click="() => sortTable('inactiveProperties')"
+        >
+          Imóveis inativos
+        </th>
+        <th class="customer-table__images" scope="col" @click="() => sortTable('images')">
+          Imagens
+        </th>
+        <th
+          class="customer-table__condominiums"
+          scope="col"
+          @click="() => sortTable('condominiums')"
+        >
+          Condomínios
+        </th>
+        <th
+          class="customer-table__portals"
+          scope="col"
+          @click="() => sortTable('portals')"
+        >
+          Portais
+        </th>
+        <th class="customer-table__notes" scope="col" @click="() => sortTable('notes')">
+          Notas promissórias
+        </th>
       </tr>
     </thead>
     <tbody class="customer-table__body">
@@ -52,12 +130,19 @@ function formatDate(date: string) {
         :key="Math.random().toString(16).slice(2)"
       >
         <td class="customer-table__data">{{ customer.customerName }}</td>
-        <td class="customer-table__data">{{ customer.contract.totalValue }}</td>
+        <td class="customer-table__data">
+          {{
+            customer.contract.totalValue.toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })
+          }}
+        </td>
         <td class="customer-table__data">
           {{ formatDate(customer.contract.createdAt) }}
         </td>
         <td class="customer-table__data">
-          {{ customer.contract.paymentMethod || "Null" }}
+          {{ formatPaymentMethod(customer.contract.paymentMethod) }}
         </td>
         <td class="customer-table__data">{{ customer.users }}</td>
         <td class="customer-table__data">{{ formatDate(customer.lastLead) }}</td>
@@ -92,6 +177,10 @@ function formatDate(date: string) {
   color: var(--color-text-table-header);
   max-height: 48px;
   height: 48px;
+}
+
+.customer-table__header th {
+  cursor: pointer;
 }
 
 .customer-table__client {
