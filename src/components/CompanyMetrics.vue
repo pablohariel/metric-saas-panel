@@ -57,14 +57,20 @@ watch(contracts, () => {
         title="ARR"
         :value="arrValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })"
       />
-      <SimpleMetric :iconPath="MvIcon" title="MV" :value="mvValue" />
       <SimpleMetric
+        class="company-metrics__mv-card"
+        :iconPath="MvIcon"
+        title="MV"
+        :value="mvValue"
+      />
+      <SimpleMetric
+        class="company-metrics__ltv-card"
         :iconPath="LtvIcon"
         title="LTV"
         :value="ltvValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })"
       />
 
-      <BetweenPeriods class="company-metrics__cac-card" />
+      <BetweenPeriods class="company-metrics__between-periods-card" />
       <Fp class="company-metrics__fp-card" />
     </div>
   </div>
@@ -74,7 +80,7 @@ watch(contracts, () => {
 .company-metrics {
   display: flex;
   flex-direction: column;
-  min-width: 80vw;
+  width: 80vw;
   max-width: 80vw;
   margin-top: 60px;
 }
@@ -95,19 +101,73 @@ watch(contracts, () => {
   grid-row-end: 3;
 }
 
-.company-metrics__cac-card {
+.company-metrics__between-periods-card {
   grid-row-start: 3;
-  grid-row-end: 3;
+  grid-row-end: 4;
   grid-column-start: 1;
   grid-column-end: 3;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1520px) {
+  .company-metrics {
+    width: 90vw;
+    max-width: 90vw;
+  }
+}
+
+@media (max-width: 1320px) {
+  .company-metrics__content {
+    grid-template: 162px 162px 162px 500px 500px / 1.2fr 1fr;
+    gap: 24px;
+  }
+
+  .company-metrics__contracts-card {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 1;
+  }
+
+  .company-metrics__between-periods-card {
+    grid-row-start: 4;
+    grid-row-end: 5;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .company-metrics__fp-card {
+    grid-row-start: 5;
+    grid-row-end: 6;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .company-metrics__mv-card {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .company-metrics__ltv-card {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+}
+
+@media (max-width: 1024px) {
+  .company-metrics {
+    width: 90vw;
+    max-width: 90vw;
+  }
+}
+
+@media (max-width: 768px) {
   .company-metrics {
     display: flex;
     flex-direction: column;
-    min-width: 90vw;
-    max-width: 90vw;
     margin-top: 50px;
   }
 
@@ -121,5 +181,8 @@ watch(contracts, () => {
   .company-metrics__contracts-card {
     min-height: 320px;
   }
+}
+
+@media (max-width: 580px) {
 }
 </style>

@@ -97,7 +97,7 @@ const finalDate = ref(new Date());
   padding-left: 30px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .between-periods-card {
     padding: 20px 30px;
   }
@@ -109,7 +109,7 @@ const finalDate = ref(new Date());
   .between-periods-card__datapicker {
     margin-left: 2px;
     margin-right: 2px;
-    max-width: 68px;
+    max-width: 80px;
     display: flex;
     text-align: center;
   }

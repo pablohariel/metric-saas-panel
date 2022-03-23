@@ -102,10 +102,13 @@ function switchTheme() {
   align-items: center;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1520px) {
   .header {
     width: 90vw;
   }
+}
+
+@media (max-width: 1024px) {
   .header__logo img {
     max-height: 28px;
   }

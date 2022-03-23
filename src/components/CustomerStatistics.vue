@@ -209,7 +209,7 @@ function sortTable(sortByEmit: SORT_CUSTOMER_TABLE_OPTIONS) {
   overflow-y: hidden;
   border-radius: 5px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1352);
-  min-height: 60vh;
+  min-height: 40vh;
 }
 
 .table__no-customer-found {
@@ -269,7 +269,13 @@ function sortTable(sortByEmit: SORT_CUSTOMER_TABLE_OPTIONS) {
   flex: 1;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1520px) {
+  .customer-statistics__table {
+    max-width: 90vw;
+  }
+}
+
+@media (max-width: 768px) {
   .customer-statistics__table-handler {
     flex-direction: column;
     align-items: flex-start;
@@ -277,10 +283,6 @@ function sortTable(sortByEmit: SORT_CUSTOMER_TABLE_OPTIONS) {
 
   .table-handler__search-input {
     margin-top: 10px;
-  }
-
-  .customer-statistics__table {
-    max-width: 90vw;
   }
 
   .customer-statistics__footer {
@@ -295,5 +297,8 @@ function sortTable(sortByEmit: SORT_CUSTOMER_TABLE_OPTIONS) {
   .customer-statistics__pagination {
     margin-top: 10px;
   }
+}
+
+@media (max-width: 480px) {
 }
 </style>
