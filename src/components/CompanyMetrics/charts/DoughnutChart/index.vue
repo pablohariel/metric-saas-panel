@@ -59,8 +59,6 @@ const options = computed(() => ({
   </div>
 </template>
 
-<style>
-.doughnut-chart__content {
-  max-height: 90%;
-}
+<style scoped>
+@import "./styles.css";
 </style>

@@ -2,9 +2,9 @@
 import { ref } from "vue";
 
 import { useStore } from "./store";
-import Header from "./components/Header.vue";
-import CompanyMetrics from "./components/CompanyMetrics.vue";
-import CustomerStatistics from "./components/CustomerStatistics.vue";
+import Header from "./components/Header/index.vue";
+import CompanyMetrics from "./components/CompanyMetrics/index.vue";
+import CustomerStatistics from "./components/CustomerStatistics/index.vue";
 
 const store = useStore();
 store.dispatch("getContracts");

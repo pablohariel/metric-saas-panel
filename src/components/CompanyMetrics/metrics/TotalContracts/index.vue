@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { ref, computed, watch } from "vue";
 
-import { joinDates } from "../../utils/joinDates";
 import { useStore } from "@/store";
+import { joinDates } from "@/utils/joinDates";
 import { getActiveContracts } from "@/utils/metrics/getActiveContracts";
+import type { IJoinedDate } from "@/utils/joinDates";
 
-import type { IJoinedDate } from "../../utils/joinDates";
-import ContractIcon from "../../assets/icons/contract.svg";
-import LineChart from "../charts/LineChart.vue";
+import ContractIcon from "@/assets/icons/contract.svg";
+
+import LineChart from "../../charts/LineChart/index.vue";
 
 const dates = ref<IJoinedDate[]>([]);
 
@@ -45,33 +46,5 @@ watch(contracts, () => {
 </template>
 
 <style scoped>
-.contracts-card {
-  position: relative;
-  background-color: var(--color-background);
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.135216);
-  border-radius: 10px;
-  padding: 34px 40px 0px 40px;
-}
-
-.contracts-card__value {
-  font-size: 2.4rem;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-.contracts-card__title {
-  margin-top: 10px;
-  font-size: 1.4rem;
-}
-
-.contracts-card__icon {
-  max-width: 90px;
-  max-height: 90px;
-}
-
-@media (max-width: 480px) {
-  .contracts-card {
-    padding: 20px 30px 0px 30px;
-  }
-}
+@import "./styles.css";
 </style>

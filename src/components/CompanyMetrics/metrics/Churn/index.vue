@@ -4,11 +4,11 @@ import { computed, ref, watch } from "vue";
 import { useStore } from "@/store";
 import { getChurn } from "@/utils/metrics/getChurn";
 
-import SimpleLineChart from "../charts/SimpleLineChart.vue";
-
 import { getChurnChartData } from "@/utils/charts/getChurnData";
 import type { IChurnChartData } from "@/utils/charts/getChurnData";
 import { sortContracts } from "@/utils/sortContracts";
+
+import SimpleLineChart from "../../charts/SimpleLineChart/index.vue";
 
 interface IChurnProps {
   initialDate: Date;
@@ -66,21 +66,5 @@ watch([contracts, initialDate, finalDate], () => {
 </template>
 
 <style scoped>
-.churn-card {
-  flex: 1;
-}
-
-.churn-card__title {
-  font-size: 1.1rem;
-}
-
-.churn-card__value {
-  font-size: 2.4rem;
-}
-
-@media (max-width: 480px) {
-  .churn-card__chart {
-    margin-top: 20px;
-  }
-}
+@import "./styles.css";
 </style>

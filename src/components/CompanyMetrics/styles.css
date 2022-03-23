@@ -1,0 +1,105 @@
+.company-metrics {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  max-width: 80vw;
+  margin-top: 60px;
+}
+
+.company-metrics__title {
+  font-size: 3.2rem;
+}
+
+.company-metrics__content {
+  margin-top: 10px;
+  display: grid;
+  grid-template: 162px 162px 500px / 1.2fr 1fr 1fr;
+  gap: 28px;
+}
+
+.company-metrics__contracts-card {
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.company-metrics__between-periods-card {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+@media (max-width: 1520px) {
+  .company-metrics {
+    width: 90vw;
+    max-width: 90vw;
+  }
+}
+
+@media (max-width: 1320px) {
+  .company-metrics__content {
+    grid-template: 162px 162px 162px 500px 500px / 1.2fr 1fr;
+    gap: 24px;
+  }
+
+  .company-metrics__contracts-card {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 1;
+  }
+
+  .company-metrics__between-periods-card {
+    grid-row-start: 4;
+    grid-row-end: 5;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .company-metrics__fp-card {
+    grid-row-start: 5;
+    grid-row-end: 6;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .company-metrics__mv-card {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .company-metrics__ltv-card {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+}
+
+@media (max-width: 1024px) {
+  .company-metrics {
+    width: 90vw;
+    max-width: 90vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .company-metrics {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+  }
+
+  .company-metrics__content {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .company-metrics__contracts-card {
+    min-height: 320px;
+  }
+}

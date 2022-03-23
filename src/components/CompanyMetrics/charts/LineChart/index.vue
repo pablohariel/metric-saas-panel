@@ -3,7 +3,7 @@ import { computed } from "vue";
 import { LineChart } from "vue-chart-3";
 import { Chart, registerables } from "chart.js";
 
-import type { IJoinedDate } from "../../utils/joinDates";
+import type { IJoinedDate } from "@/utils/joinDates";
 
 interface ILineChartProps {
   dates: IJoinedDate[];
@@ -58,22 +58,5 @@ const options = computed(() => ({
 </template>
 
 <style>
-.line-chart {
-  position: absolute;
-  max-height: 130px;
-  height: 130px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border-radius: 0px 0px 10px 10px;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-}
-
-.line-chart__content {
-  max-height: 90%;
-  max-width: 100%;
-  width: 100%;
-}
+@import "./styles.css";
 </style>

@@ -3,11 +3,11 @@ import { computed, ref, watch } from "vue";
 
 import { useStore } from "@/store";
 import { getCac } from "@/utils/metrics/getCac";
-
-import SimpleLineChart from "../charts/SimpleLineChart.vue";
 import { sortContracts } from "@/utils/sortContracts";
 import { getCacChartData } from "@/utils/charts/getCacData";
 import type { ICacChartData } from "@/utils/charts/getCacData";
+
+import SimpleLineChart from "../../charts/SimpleLineChart/index.vue";
 
 interface ICacProps {
   initialDate: Date;
@@ -77,48 +77,5 @@ function handleInvestmentAmount(event: any) {
 </template>
 
 <style scoped>
-.cac-card {
-  flex: 1;
-  padding-right: 30px;
-}
-
-.cac-card__header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.cac-card__title {
-  font-size: 1.1rem;
-}
-
-.cac-card__value {
-  font-size: 2.4rem;
-}
-
-.cac-card__input {
-  border: none;
-  height: 30px;
-  padding: 10px;
-  max-width: 120px;
-  background-color: transparent;
-  color: var(--color-text);
-}
-
-.cac-card__input::placeholder {
-  color: var(--color-text);
-}
-
-.cac-card__input:focus {
-  outline: none;
-}
-
-@media (max-width: 480px) {
-  .cac-card {
-    padding-right: 0;
-  }
-
-  .cac-card__chart {
-    margin-top: 20px;
-  }
-}
+@import "./styles.css";
 </style>
