@@ -1,11 +1,11 @@
-import type { IContract } from "@/interfaces/Contract"
+import type { IContract } from "@/interfaces/Contract";
 
 interface Params {
-  contracts: IContract[]
+  contracts: IContract[];
 }
 
 const getActiveContracts = ({ contracts }: Params): IContract[] => {
-  return contracts.filter(contract => !contract.deletedAt)
-}
+  return contracts.filter((contract) => !contract.deletedAt);
+};
 
-export { getActiveContracts }
+export { getActiveContracts };

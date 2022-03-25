@@ -1,40 +1,43 @@
 interface IParams {
-  dates: Date[]
+  dates: Date[];
 }
 
 export interface IJoinedDate {
-  key: string,
-  amount: number,
-  month: string
+  key: string;
+  amount: number;
+  month: string;
 }
 
 // join dates by month
 const joinDates = ({ dates }: IParams): Array<IJoinedDate> => {
-  const joinedDates = [] as IJoinedDate[]
+  const joinedDates = [] as IJoinedDate[];
 
-  for(const date of dates) {
-    let dateFound = false
-    const key = `${date.getMonth()+1}-${date.getFullYear()}`
+  for (const date of dates) {
+    let dateFound = false;
+    const key = `${date.getMonth() + 1}-${date.getFullYear()}`;
 
-    for(const joinedDate of joinedDates) {
-      if(joinedDate.key === key) {
-        dateFound = true
-        joinedDate.amount++
+    for (const joinedDate of joinedDates) {
+      if (joinedDate.key === key) {
+        dateFound = true;
+        joinedDate.amount++;
       }
     }
 
-   const month = date.toLocaleString('pt-BR', { month: 'long', year: 'numeric' })
+    const month = date.toLocaleString("pt-BR", {
+      month: "long",
+      year: "numeric",
+    });
 
-    if(!dateFound) {
+    if (!dateFound) {
       joinedDates.push({
         key,
         amount: 1,
-        month
-      })
+        month,
+      });
     }
   }
 
-  return joinedDates
-}
+  return joinedDates;
+};
 
-export { joinDates }
+export { joinDates };

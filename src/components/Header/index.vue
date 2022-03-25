@@ -24,11 +24,17 @@ function switchTheme() {
       <h1>{{ title }}</h1>
     </div>
     <div class="header__logo">
-      <img :src="currentTheme === 'theme-light' ? LogoLight : LogoDark" alt="Agil logo" />
+      <img
+        :src="currentTheme === 'theme-light' ? LogoLight : LogoDark"
+        alt="Agil logo"
+      />
     </div>
     <div class="header__theme-icon">
       <button class="header__btn" @click="switchTheme">
-        <img :src="currentTheme === 'theme-light' ? SunIcon : MoonIcon" alt="Sun icon" />
+        <img
+          :src="currentTheme === 'theme-light' ? SunIcon : MoonIcon"
+          alt="Sun icon"
+        />
       </button>
     </div>
   </header>

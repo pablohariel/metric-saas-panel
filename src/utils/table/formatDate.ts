@@ -4,6 +4,6 @@ const formatDate = (date: string): string => {
     month: "2-digit",
     year: "numeric",
   });
-}
+};
 
-export { formatDate }
+export { formatDate };

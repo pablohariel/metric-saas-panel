@@ -1,34 +1,37 @@
-import type { IContract } from "@/interfaces/Contract"
-import { differenceInDays } from 'date-fns'
+import type { IContract } from "@/interfaces/Contract";
+import { differenceInDays } from "date-fns";
 
 interface IParams {
-  deletedContracts: IContract[]
+  deletedContracts: IContract[];
 }
 
 const getMv = ({ deletedContracts }: IParams): string => {
-  let contractsDurationAmount = 0
+  let contractsDurationAmount = 0;
 
-  for(const deletedContract of deletedContracts) {
-    if(deletedContract.deletedAt) {
-      const contractCreateDate = new Date(deletedContract.createdAt)
-      const contractDeleteDate = new Date(deletedContract.deletedAt)
+  for (const deletedContract of deletedContracts) {
+    if (deletedContract.deletedAt) {
+      const contractCreateDate = new Date(deletedContract.createdAt);
+      const contractDeleteDate = new Date(deletedContract.deletedAt);
 
-      contractsDurationAmount += differenceInDays(contractDeleteDate, contractCreateDate)
+      contractsDurationAmount += differenceInDays(
+        contractDeleteDate,
+        contractCreateDate
+      );
     }
   }
 
-  const days = contractsDurationAmount / deletedContracts.length
-  const years = days / 365
+  const days = contractsDurationAmount / deletedContracts.length;
+  const years = days / 365;
 
-  if(days > 365) {
-    if(years >= 2) {
-      return `${years.toFixed(2)} anos`
+  if (days > 365) {
+    if (years >= 2) {
+      return `${years.toFixed(2)} anos`;
     } else {
-      return `${years.toFixed(0)} ano`
+      return `${years.toFixed(0)} ano`;
     }
   } else {
-    return `${Math.floor(days)} dias`
+    return `${Math.floor(days)} dias`;
   }
-}
+};
 
-export { getMv }
+export { getMv };

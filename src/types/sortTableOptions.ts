@@ -16,5 +16,4 @@ type SORT_CUSTOMER_TABLE_OPTIONS =
   | "portals"
   | "notes";
 
-
-export { SORT_CUSTOMER_TABLE_OPTIONS }
+export { SORT_CUSTOMER_TABLE_OPTIONS };

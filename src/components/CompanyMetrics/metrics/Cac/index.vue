@@ -55,7 +55,10 @@ function handleInvestmentAmount(event: any) {
       <div class="cac-card__data">
         <h4 class="cac-card__title">CAC</h4>
         <span class="cac-card__value">{{
-          cacValue.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
+          cacValue.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })
         }}</span>
       </div>
       <div class="cac-card__input-wrapper">
@@ -71,7 +74,11 @@ function handleInvestmentAmount(event: any) {
     </div>
 
     <div class="cac-card__chart">
-      <SimpleLineChart label="Novos contratos" color="#2DCD7A" :data="cacChartData" />
+      <SimpleLineChart
+        label="Novos contratos"
+        color="#2DCD7A"
+        :data="cacChartData"
+      />
     </div>
   </div>
 </template>

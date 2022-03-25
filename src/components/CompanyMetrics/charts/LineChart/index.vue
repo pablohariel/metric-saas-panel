@@ -53,7 +53,11 @@ const options = computed(() => ({
 
 <template>
   <div class="line-chart">
-    <LineChart :chart-data="data" :options="options" css-classes="line-chart__content" />
+    <LineChart
+      :chart-data="data"
+      :options="options"
+      css-classes="line-chart__content"
+    />
   </div>
 </template>
 

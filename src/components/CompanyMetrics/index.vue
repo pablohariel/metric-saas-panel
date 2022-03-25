@@ -34,7 +34,10 @@ watch(contracts, () => {
   const deletedContracts = contracts.value.filter((c) => c.deletedAt);
 
   mvValue.value = getMv({ deletedContracts });
-  mrrValue.value = getMrr({ contracts: activeContracts });
+  mrrValue.value = getMrr({
+    contracts: activeContracts,
+    allowDeletedContracts: false,
+  });
   arrValue.value = getArr({ groupedContracts });
   ltvValue.value = getLtv({ deletedContracts });
 });
@@ -50,12 +53,22 @@ watch(contracts, () => {
       <SimpleMetric
         :iconPath="MrrIcon"
         title="MRR"
-        :value="mrrValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })"
+        :value="
+          mrrValue.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          })
+        "
       />
       <SimpleMetric
         :iconPath="ArrIcon"
         title="ARR"
-        :value="arrValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })"
+        :value="
+          arrValue.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          })
+        "
       />
       <SimpleMetric
         class="company-metrics__mv-card"
@@ -67,7 +80,12 @@ watch(contracts, () => {
         class="company-metrics__ltv-card"
         :iconPath="LtvIcon"
         title="LTV"
-        :value="ltvValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })"
+        :value="
+          ltvValue.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          })
+        "
       />
 
       <BetweenPeriods class="company-metrics__between-periods-card" />

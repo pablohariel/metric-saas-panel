@@ -10,10 +10,10 @@ import type { SORT_CUSTOMER_TABLE_OPTIONS } from "@/types/sortTableOptions";
 const store = useStore();
 const customers = computed(() => store.state.customers);
 
-const resultsPerPage = ref<String>("10");
+const resultsPerPage = ref<string>("10");
 const customersToShow = ref<ICustomer[]>(customers.value);
-const searchInputValue = ref<String>("");
-const totalResults = ref<Number>(customers.value.length);
+const searchInputValue = ref<string>("");
+const totalResults = ref<number>(customers.value.length);
 const paginationNumber = ref<number>(0);
 const sortBy = ref<SORT_CUSTOMER_TABLE_OPTIONS>("createdAt");
 
@@ -21,30 +21,33 @@ watch([resultsPerPage, searchInputValue], () => {
   paginationNumber.value = 0;
 });
 
-watch([customers, resultsPerPage, searchInputValue, paginationNumber, sortBy], () => {
-  if (searchInputValue.value.length > 0) {
-    customersToShow.value = customers.value.filter((customer) =>
-      customer.customerName
-        .toLocaleLowerCase()
-        .includes(searchInputValue.value.toLocaleLowerCase())
-    );
+watch(
+  [customers, resultsPerPage, searchInputValue, paginationNumber, sortBy],
+  () => {
+    if (searchInputValue.value.length > 0) {
+      customersToShow.value = customers.value.filter((customer) =>
+        customer.customerName
+          .toLocaleLowerCase()
+          .includes(searchInputValue.value.toLocaleLowerCase())
+      );
 
-    customersToShow.value = sortCustomer(customersToShow.value);
+      customersToShow.value = sortCustomer(customersToShow.value);
 
-    totalResults.value = customersToShow.value.length;
-    customersToShow.value = customersToShow.value.slice(
-      paginationNumber.value * Number(resultsPerPage.value),
-      Number(resultsPerPage.value) * (paginationNumber.value + 1)
-    );
-  } else {
-    totalResults.value = customers.value.length;
-    customersToShow.value = sortCustomer(customers.value);
-    customersToShow.value = customersToShow.value.slice(
-      paginationNumber.value * Number(resultsPerPage.value),
-      Number(resultsPerPage.value) * (paginationNumber.value + 1)
-    );
+      totalResults.value = customersToShow.value.length;
+      customersToShow.value = customersToShow.value.slice(
+        paginationNumber.value * Number(resultsPerPage.value),
+        Number(resultsPerPage.value) * (paginationNumber.value + 1)
+      );
+    } else {
+      totalResults.value = customers.value.length;
+      customersToShow.value = sortCustomer(customers.value);
+      customersToShow.value = customersToShow.value.slice(
+        paginationNumber.value * Number(resultsPerPage.value),
+        Number(resultsPerPage.value) * (paginationNumber.value + 1)
+      );
+    }
   }
-});
+);
 
 function sortCustomer(customersToSort: ICustomer[]): ICustomer[] {
   switch (sortBy.value) {
@@ -90,7 +93,10 @@ function sortCustomer(customersToSort: ICustomer[]): ICustomer[] {
     }
   }
 
-  const customersSorted = _.sortBy(customersToSort, (customer) => customer[sortBy.value]);
+  const customersSorted = _.sortBy(
+    customersToSort,
+    (customer) => customer[sortBy.value]
+  );
 
   return customersSorted.reverse();
 }
@@ -108,7 +114,10 @@ function sortTable(sortByEmit: SORT_CUSTOMER_TABLE_OPTIONS) {
       <div class="customer-statistics__table-handler">
         <p class="table-handler__results-page">
           Exibir
-          <select class="table-handler__page-number-select" v-model="resultsPerPage">
+          <select
+            class="table-handler__page-number-select"
+            v-model="resultsPerPage"
+          >
             <option value="10">10</option>
             <option value="25">25</option>
             <option value="50">50</option>
@@ -125,7 +134,10 @@ function sortTable(sortByEmit: SORT_CUSTOMER_TABLE_OPTIONS) {
         />
       </div>
       <div class="customer-statistics__table">
-        <Table :customers="customersToShow" @sortTable="(sortBy) => sortTable(sortBy)" />
+        <Table
+          :customers="customersToShow"
+          @sortTable="(sortBy) => sortTable(sortBy)"
+        />
         <span class="table__no-customer-found" v-if="totalResults < 1"
           >Nenhum cliente encontrado</span
         >
@@ -147,7 +159,9 @@ function sortTable(sortByEmit: SORT_CUSTOMER_TABLE_OPTIONS) {
           <button
             class="pagination__button"
             v-on:click="paginationNumber += 1"
-            :disabled="(paginationNumber + 1) * Number(resultsPerPage) > totalResults"
+            :disabled="
+              (paginationNumber + 1) * Number(resultsPerPage) > totalResults
+            "
           >
             Próximo
           </button>

@@ -53,7 +53,11 @@ function sortTable(sortBy: SORT_CUSTOMER_TABLE_OPTIONS) {
         >
           Formar de pagamento
         </th>
-        <th class="customer-table__users" scope="col" @click="() => sortTable('users')">
+        <th
+          class="customer-table__users"
+          scope="col"
+          @click="() => sortTable('users')"
+        >
           Usuários
         </th>
         <th
@@ -77,7 +81,11 @@ function sortTable(sortBy: SORT_CUSTOMER_TABLE_OPTIONS) {
         >
           Clientes
         </th>
-        <th class="customer-table__calls" scope="col" @click="() => sortTable('calls')">
+        <th
+          class="customer-table__calls"
+          scope="col"
+          @click="() => sortTable('calls')"
+        >
           Atendimentos
         </th>
         <th
@@ -101,7 +109,11 @@ function sortTable(sortBy: SORT_CUSTOMER_TABLE_OPTIONS) {
         >
           Imóveis inativos
         </th>
-        <th class="customer-table__images" scope="col" @click="() => sortTable('images')">
+        <th
+          class="customer-table__images"
+          scope="col"
+          @click="() => sortTable('images')"
+        >
           Imagens
         </th>
         <th
@@ -118,7 +130,11 @@ function sortTable(sortBy: SORT_CUSTOMER_TABLE_OPTIONS) {
         >
           Portais
         </th>
-        <th class="customer-table__notes" scope="col" @click="() => sortTable('notes')">
+        <th
+          class="customer-table__notes"
+          scope="col"
+          @click="() => sortTable('notes')"
+        >
           Notas promissórias
         </th>
       </tr>
@@ -145,8 +161,12 @@ function sortTable(sortBy: SORT_CUSTOMER_TABLE_OPTIONS) {
           {{ formatPaymentMethod(customer.contract.paymentMethod) }}
         </td>
         <td class="customer-table__data">{{ customer.users }}</td>
-        <td class="customer-table__data">{{ formatDate(customer.lastLead) }}</td>
-        <td class="customer-table__data">{{ formatDate(customer.lastProperty) }}</td>
+        <td class="customer-table__data">
+          {{ formatDate(customer.lastLead) }}
+        </td>
+        <td class="customer-table__data">
+          {{ formatDate(customer.lastProperty) }}
+        </td>
         <td class="customer-table__data">{{ customer.customers }}</td>
         <td class="customer-table__data">{{ customer.calls }}</td>
         <td class="customer-table__data">{{ customer.properties }}</td>

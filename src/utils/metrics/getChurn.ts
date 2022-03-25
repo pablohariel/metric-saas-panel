@@ -1,39 +1,42 @@
-import type { IContract } from "@/interfaces/Contract"
+import type { IContract } from "@/interfaces/Contract";
 
 interface IParams {
-  contracts: IContract[],
-  initialDate: Date,
-  finalDate: Date
+  contracts: IContract[];
+  initialDate: Date;
+  finalDate: Date;
 }
 
-const getChurn = ( { contracts, initialDate, finalDate }: IParams ): number => {
-  let actitiveContractsAmount = 0
-  let canceledContractsAmount = 0
+const getChurn = ({ contracts, initialDate, finalDate }: IParams): number => {
+  let activeContractsAmount = 0;
+  let canceledContractsAmount = 0;
 
-  for(const contract of contracts) {
-    const contractCreateDate = new Date(contract.createdAt)
+  for (const contract of contracts) {
+    const contractCreateDate = new Date(contract.createdAt);
 
-    if(contractCreateDate <= initialDate) {
-      if(contract.deletedAt) {
-        const contractDeleteDate = new Date(contract.deletedAt)
-        if(contractDeleteDate >= initialDate) {
-          actitiveContractsAmount++
+    if (contractCreateDate <= initialDate) {
+      if (contract.deletedAt) {
+        const contractDeleteDate = new Date(contract.deletedAt);
+        if (contractDeleteDate >= initialDate) {
+          activeContractsAmount++;
         }
       } else {
-        actitiveContractsAmount++
+        activeContractsAmount++;
       }
     }
 
-    if(contract.deletedAt) {
-      const contractDeleteDate = new Date(contract.deletedAt)
-      if(contractDeleteDate >= initialDate && contractDeleteDate <= finalDate) {
-        canceledContractsAmount++
+    if (contract.deletedAt) {
+      const contractDeleteDate = new Date(contract.deletedAt);
+      if (
+        contractDeleteDate >= initialDate &&
+        contractDeleteDate <= finalDate
+      ) {
+        canceledContractsAmount++;
       }
     }
   }
-  const churn = (canceledContractsAmount / actitiveContractsAmount) * 100
+  const churn = (canceledContractsAmount / activeContractsAmount) * 100;
 
-  return actitiveContractsAmount === 0 ? 0 : churn
-}
+  return activeContractsAmount === 0 ? 0 : churn;
+};
 
-export{ getChurn }
+export { getChurn };

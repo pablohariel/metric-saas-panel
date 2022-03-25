@@ -31,7 +31,9 @@ watch([contracts, initialDate, finalDate], () => {
     finalDate: finalDate.value,
   });
 
-  const deletedContracts = contracts.value.filter((contract) => contract.deletedAt);
+  const deletedContracts = contracts.value.filter(
+    (contract) => contract.deletedAt
+  );
 
   const sortedDeletedContracts = sortContracts({
     contracts: deletedContracts,

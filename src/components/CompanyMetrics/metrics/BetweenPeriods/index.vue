@@ -12,7 +12,7 @@ const finalDate = ref(new Date());
 
 <template>
   <div class="between-periods-card">
-    <h3 class="between-periods-card__title">Métricas entre periodos</h3>
+    <h3 class="between-periods-card__title">Métricas entre períodos</h3>
 
     <div class="between-periods-card__divider">
       <span class="between-periods-card__subtitle">Período</span>

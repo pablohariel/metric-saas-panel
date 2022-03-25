@@ -12,6 +12,6 @@ const formatPaymentMethod = (
       return "";
     }
   }
-}
+};
 
-export { formatPaymentMethod }
+export { formatPaymentMethod };
