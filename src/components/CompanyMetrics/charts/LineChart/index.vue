@@ -9,17 +9,18 @@ interface ILineChartProps {
   dates: IJoinedDate[];
 }
 
-const { dates = [] } = defineProps<ILineChartProps>();
+const props = defineProps<ILineChartProps>();
 
 Chart.register(...registerables);
 
 const data = computed(() => ({
-  labels: dates.length > 0 ? dates.map((date) => date.month) : [],
+  labels: props.dates.length > 0 ? props.dates.map((date) => date.month) : [],
 
   datasets: [
     {
       label: "Novos contratos",
-      data: dates.length > 0 ? dates.map((date) => date.amount) : [],
+      data:
+        props.dates.length > 0 ? props.dates.map((date) => date.amount) : [],
       fill: true,
       backgroundColor: "rgba(183, 177, 247, 1)",
       borderColor: "#7E72F2",

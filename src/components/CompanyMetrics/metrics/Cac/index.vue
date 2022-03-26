@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 
-import { useStore } from "@/store";
+import { useDataStore } from "@/stores/dataStore";
 import { getCac } from "@/utils/metrics/getCac";
 import { sortContracts } from "@/utils/sortContracts";
 import { getCacChartData } from "@/utils/charts/getCacData";
@@ -15,7 +15,7 @@ interface ICacProps {
 }
 
 const props = defineProps<ICacProps>();
-const store = useStore();
+const store = useDataStore();
 
 const cacValue = ref(0);
 const cacChartData = ref<ICacChartData[]>([]);

@@ -5,23 +5,26 @@ module.exports = {
   root: true,
   parserOptions: {
     parser: "@typescript-eslint/parser",
+    ecmaVersion: 12,
+    sourceType: "module"
   },
-  plugins: ["@typescript-eslint", "prettier"],
+  plugins: ["@typescript-eslint"],
   extends: [
     "plugin:vue/vue3-essential",
     "eslint:recommended",
     "@vue/eslint-config-typescript/recommended",
     "@vue/eslint-config-prettier",
+    "prettier"
   ],
   settings: {
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".vue"],
+      "@typescript-eslint/parser": [".ts", ".vue"]
     },
     "import/resolver": {
-      typescript: {},
-    },
+      typescript: {}
+    }
   },
   env: {
-    "vue/setup-compiler-macros": true,
-  },
+    "vue/setup-compiler-macros": true
+  }
 };

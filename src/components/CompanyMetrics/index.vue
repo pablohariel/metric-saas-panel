@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 
-import { useStore } from "@/store";
+import { useDataStore } from "@/stores/dataStore";
 import { getMrr } from "@/utils/metrics/getMrr";
 import { getArr } from "@/utils/metrics/getArr";
 import { groupContracts } from "@/utils/groupContracts";
@@ -24,7 +24,7 @@ const arrValue = ref(0);
 const mvValue = ref("");
 const ltvValue = ref(0);
 
-const store = useStore();
+const store = useDataStore();
 
 const contracts = computed(() => store.state.contracts);
 

@@ -9,7 +9,7 @@ interface ICustomerTableProps {
   customers: ICustomer[];
 }
 
-const { customers } = defineProps<ICustomerTableProps>();
+const props = defineProps<ICustomerTableProps>();
 
 const emit = defineEmits(["sortTable"]);
 
@@ -142,8 +142,8 @@ function sortTable(sortBy: SORT_CUSTOMER_TABLE_OPTIONS) {
     <tbody class="customer-table__body">
       <tr
         class="customer-table__row"
-        v-for="customer in customers"
-        :key="Math.random().toString(16).slice(2)"
+        v-for="customer in props.customers"
+        :key="customer.contract.createdAt + Math.random() * 10"
       >
         <td class="customer-table__data">{{ customer.customerName }}</td>
         <td class="customer-table__data">

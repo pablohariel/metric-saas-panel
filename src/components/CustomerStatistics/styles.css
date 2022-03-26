@@ -28,6 +28,7 @@
   padding: 0;
   width: 44px;
   color: var(--color-text);
+  cursor: pointer;
 }
 
 .table-handler__search-input {

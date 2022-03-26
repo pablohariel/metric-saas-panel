@@ -2,12 +2,12 @@
 import { computed, ref, watch } from "vue";
 
 import type { IFp } from "@/utils/metrics/getFp";
-import { useStore } from "@/store";
+import { useDataStore } from "@/stores/dataStore";
 import { getFp } from "@/utils/metrics/getFp";
 
 import DoughnutChart from "../../charts/DoughnutChart/index.vue";
 
-const store = useStore();
+const store = useDataStore();
 
 const payments = computed(() => store.state.payments);
 const fpValue = ref<IFp>({

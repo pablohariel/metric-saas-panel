@@ -6,15 +6,15 @@ import type { IContract } from "../interfaces/Contract";
 import type { IPayment } from "../interfaces/Payment";
 import type { ICustomer } from "../interfaces/Customer";
 
-interface State {
+interface IDataState {
   contracts: IContract[];
   payments: IPayment[];
   customers: ICustomer[];
 }
 
-const key: InjectionKey<Store<State>> = Symbol();
+const dataKey: InjectionKey<Store<IDataState>> = Symbol();
 
-const store = createStore<State>({
+const dataStore = createStore<IDataState>({
   state: {
     contracts: [],
     payments: [],
@@ -74,8 +74,8 @@ const store = createStore<State>({
   },
 });
 
-function useStore() {
-  return baseUseStore(key);
+function useDataStore() {
+  return baseUseStore(dataKey);
 }
 
-export { State, key, store, useStore };
+export { IDataState, dataKey, dataStore, useDataStore };

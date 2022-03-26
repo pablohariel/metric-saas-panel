@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch } from "vue";
 
-import { useStore } from "@/store";
+import { useDataStore } from "@/stores/dataStore";
 import { joinDates } from "@/utils/joinDates";
 import { getActiveContracts } from "@/utils/metrics/getActiveContracts";
 import type { IJoinedDate } from "@/utils/joinDates";
@@ -12,7 +12,7 @@ import LineChart from "../../charts/LineChart/index.vue";
 
 const dates = ref<IJoinedDate[]>([]);
 
-const store = useStore();
+const store = useDataStore();
 const contracts = computed(() => store.state.contracts);
 const activeContractsAmount = ref(0);
 

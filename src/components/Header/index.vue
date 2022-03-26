@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
+import { useThemeStore } from "@/stores/themeStore";
+
 import MoonIcon from "@/assets/icons/theme/moon.svg";
 import SunIcon from "@/assets/icons/theme/sun.svg";
 import LogoLight from "@/assets/logo-light.png";
@@ -6,15 +10,14 @@ import LogoDark from "@/assets/logo-dark.png";
 
 interface IHeaderProps {
   title: string;
-  currentTheme: string;
 }
-
 defineProps<IHeaderProps>();
 
-const emit = defineEmits(["switchTheme"]);
+const themeStore = useThemeStore();
+const currentTheme = computed(() => themeStore.state.currentTheme);
 
 function switchTheme() {
-  emit("switchTheme");
+  themeStore.dispatch("switchTheme");
 }
 </script>
 

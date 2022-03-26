@@ -3,11 +3,11 @@ import { computed, watch, ref } from "vue";
 import _ from "lodash";
 
 import Table from "@/components/CustomerStatistics/Table/index.vue";
-import { useStore } from "@/store";
+import { useDataStore } from "@/stores/dataStore";
 import type { ICustomer } from "@/interfaces/Customer";
 import type { SORT_CUSTOMER_TABLE_OPTIONS } from "@/types/sortTableOptions";
 
-const store = useStore();
+const store = useDataStore();
 const customers = computed(() => store.state.customers);
 
 const resultsPerPage = ref<string>("10");

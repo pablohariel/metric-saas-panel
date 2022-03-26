@@ -1,39 +1,26 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
-import { useStore } from "./store";
+import { useDataStore } from "./stores/dataStore";
+import { useThemeStore } from "./stores/themeStore";
 import Header from "./components/Header/index.vue";
 import CompanyMetrics from "./components/CompanyMetrics/index.vue";
 import CustomerStatistics from "./components/CustomerStatistics/index.vue";
 
-const store = useStore();
-store.dispatch("getContracts");
-store.dispatch("getPayments");
-store.dispatch("getCustomers");
+const dataStore = useDataStore();
+dataStore.dispatch("getContracts");
+dataStore.dispatch("getPayments");
+dataStore.dispatch("getCustomers");
 
 const title = ref("Métricas SaaS");
 
-const currentTheme = ref(localStorage.getItem("theme-color") || "theme-light");
-
-function switchTheme() {
-  const storedTheme = localStorage.getItem("theme-color");
-  if (storedTheme === "theme-dark") {
-    localStorage.setItem("theme-color", "theme-light");
-    currentTheme.value = localStorage.getItem("theme-color") || "theme-light";
-  } else {
-    localStorage.setItem("theme-color", "theme-dark");
-    currentTheme.value = localStorage.getItem("theme-color") || "theme-dark";
-  }
-}
+const themeStore = useThemeStore();
+const currentTheme = computed(() => themeStore.state.currentTheme);
 </script>
 
 <template>
   <div id="page" :class="currentTheme">
-    <Header
-      :title="title"
-      :currentTheme="currentTheme"
-      @switchTheme="() => switchTheme()"
-    />
+    <Header :title="title" />
 
     <main>
       <CompanyMetrics />
@@ -44,7 +31,6 @@ function switchTheme() {
 
 <style>
 @import "./assets/base.css";
-
 #page {
   display: flex;
   flex-direction: column;

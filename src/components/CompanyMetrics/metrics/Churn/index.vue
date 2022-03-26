@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 
-import { useStore } from "@/store";
+import { useDataStore } from "@/stores/dataStore";
 import { getChurn } from "@/utils/metrics/getChurn";
 
 import { getChurnChartData } from "@/utils/charts/getChurnData";
@@ -16,7 +16,7 @@ interface IChurnProps {
 }
 
 const props = defineProps<IChurnProps>();
-const store = useStore();
+const store = useDataStore();
 
 const churnValue = ref(0);
 const churnChartData = ref<IChurnChartData[]>([]);
