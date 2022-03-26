@@ -71,6 +71,13 @@
   padding-left: 30px;
 }
 
+@media (max-width: 1320px) {
+  .v3dp__popout {
+    margin-right: -40px !important;
+    right: 0px !important;
+  }
+}
+
 @media (max-width: 1024px) {
   .between-periods-card__datapicker-group {
     max-width: 100px;
