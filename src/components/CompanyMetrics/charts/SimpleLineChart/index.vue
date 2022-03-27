@@ -39,7 +39,7 @@ const options = computed(() => ({
     },
   },
   layout: {
-    autoPadding: false,
+    autoPadding: true,
   },
   plugins: {
     legend: {

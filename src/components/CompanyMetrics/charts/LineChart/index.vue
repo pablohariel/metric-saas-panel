@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { LineChart } from "vue-chart-3";
+import type { ChartOptions } from "chart.js";
 import { Chart, registerables } from "chart.js";
 
 import type { IJoinedDate } from "@/utils/joinDates";
@@ -29,7 +30,14 @@ const data = computed(() => ({
   ],
 }));
 
-const options = computed(() => ({
+const options = computed<ChartOptions<"bar">>(() => ({
+  responsive: true,
+  elements: {
+    point: {
+      borderColor: "#e50d0d",
+      pointStyle: "circle",
+    },
+  },
   scales: {
     x: {
       display: false,
@@ -40,6 +48,9 @@ const options = computed(() => ({
   },
   layout: {
     autoPadding: false,
+    padding: {
+      top: 4,
+    },
   },
   plugins: {
     legend: {
