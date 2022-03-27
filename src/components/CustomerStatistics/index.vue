@@ -144,8 +144,15 @@ function sortTable(sortByEmit: SORT_CUSTOMER_TABLE_OPTIONS) {
       </div>
       <div class="customer-statistics__footer">
         <p class="customer-statistics__total-results">
-          Mostrando <strong>{{ customersToShow.length }}</strong> de
-          <strong>{{ totalResults }}</strong> registros
+          Mostrando de
+          <strong>{{ Number(resultsPerPage) * paginationNumber + 1 }}</strong>
+          até
+          <strong>{{
+            Number(resultsPerPage) * (paginationNumber + 1) <= totalResults
+              ? customersToShow.length * (paginationNumber + 1)
+              : totalResults
+          }}</strong>
+          de <strong>{{ totalResults }}</strong> registros
         </p>
         <div class="customer-statistics__pagination">
           <button
