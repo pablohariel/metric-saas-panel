@@ -3,14 +3,14 @@ interface IContract {
   customerName: string;
   customerId: number;
   paymentFrequency: "monthly" | "semiannually" | "yearly";
-  paymentMethod?: string;
-  paymentRepeats?: number;
-  nextDueDate?: string;
+  paymentMethod: string | null;
+  paymentRepeats: number | null;
+  nextDueDate: string | null;
   fulfilled: boolean;
   totalValue: number;
   createdAt: string;
-  updatedAt?: string;
-  deletedAt?: string;
+  updatedAt: string | null;
+  deletedAt: string | null;
 }
 
 export { IContract };

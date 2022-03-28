@@ -3,7 +3,7 @@ import { ref, computed } from "vue";
 import Datepicker from "vue3-datepicker";
 import { add } from "date-fns";
 
-import { useThemeStore } from "@/stores/themeStore";
+import { themeStore } from "@/stores/themeStore";
 
 import ArrowDownLight from "@/assets/arrow-down-light.svg";
 import ArrowDownDark from "@/assets/arrow-down-dark.svg";
@@ -11,7 +11,6 @@ import ArrowDownDark from "@/assets/arrow-down-dark.svg";
 import CacCard from "../Cac/index.vue";
 import ChurnCard from "../Churn/index.vue";
 
-const themeStore = useThemeStore();
 const currentTheme = computed(() => themeStore.state.currentTheme);
 
 const initialDate = ref(add(new Date(), { years: -1 }));

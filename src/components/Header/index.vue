@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { useThemeStore } from "@/stores/themeStore";
+import { themeStore } from "@/stores/themeStore";
 
 import MoonIcon from "@/assets/icons/theme/moon.svg";
 import SunIcon from "@/assets/icons/theme/sun.svg";
@@ -13,7 +13,6 @@ interface IHeaderProps {
 }
 defineProps<IHeaderProps>();
 
-const themeStore = useThemeStore();
 const currentTheme = computed(() => themeStore.state.currentTheme);
 
 function switchTheme() {
@@ -28,15 +27,29 @@ function switchTheme() {
     </div>
     <div class="header__logo">
       <img
+        :class="
+          currentTheme === 'theme-light'
+            ? 'header__logo-img--light'
+            : 'header__logo-img--dark'
+        "
         :src="currentTheme === 'theme-light' ? LogoLight : LogoDark"
-        alt="Agil logo"
+        :alt="
+          currentTheme === 'theme-light' ? 'Agil logo light' : 'Agil logo dark'
+        "
       />
     </div>
     <div class="header__theme-icon">
       <button class="header__btn" @click="switchTheme">
         <img
+          :class="
+            currentTheme === 'theme-light'
+              ? 'header__theme-icon-img--light'
+              : 'header__theme-icon-img--dark'
+          "
           :src="currentTheme === 'theme-light' ? SunIcon : MoonIcon"
-          alt="Sun icon"
+          :alt="
+            currentTheme === 'theme-light' ? 'Sun icon light' : 'Sun icon dark'
+          "
         />
       </button>
     </div>
