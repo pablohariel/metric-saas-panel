@@ -15,13 +15,21 @@ const searchInputValue = ref("");
 const totalResults = ref(customers.value.length);
 const paginationNumber = ref(0);
 const sortBy = ref<SORT_CUSTOMER_TABLE_OPTIONS>("createdAt");
+const orderBy = ref<"DESC" | "ASC">("DESC");
 
 watch([resultsPerPage, searchInputValue], () => {
   paginationNumber.value = 0;
 });
 
 watch(
-  [customers, resultsPerPage, searchInputValue, paginationNumber, sortBy],
+  [
+    customers,
+    resultsPerPage,
+    searchInputValue,
+    paginationNumber,
+    sortBy,
+    orderBy,
+  ],
   () => {
     if (searchInputValue.value.length > 0) {
       customersToShow.value = customers.value.filter((customer) =>
@@ -55,15 +63,18 @@ function sortCustomer(customersToSort: ICustomer[]): ICustomer[] {
         customersToSort,
         (customer) => customer.customerName
       );
-
-      return customersSorted;
+      return orderBy.value === "DESC"
+        ? customersSorted
+        : customersSorted.reverse();
     }
     case "portals": {
       const customersSorted = _.sortBy(customersToSort, (customer) =>
         customer.portals.length > 0 ? customer.portals[0].length : -1
       );
 
-      return customersSorted.reverse();
+      return orderBy.value === "DESC"
+        ? customersSorted.reverse()
+        : customersSorted;
     }
     case "createdAt": {
       const customersSorted = _.sortBy(
@@ -71,7 +82,9 @@ function sortCustomer(customersToSort: ICustomer[]): ICustomer[] {
         (customer) => customer.contract.createdAt
       );
 
-      return customersSorted.reverse();
+      return orderBy.value === "DESC"
+        ? customersSorted.reverse()
+        : customersSorted;
     }
     case "totalValue": {
       const customersSorted = _.sortBy(
@@ -79,7 +92,9 @@ function sortCustomer(customersToSort: ICustomer[]): ICustomer[] {
         (customer) => customer.contract.totalValue
       );
 
-      return customersSorted.reverse();
+      return orderBy.value === "DESC"
+        ? customersSorted.reverse()
+        : customersSorted;
     }
     case "paymentMethod": {
       const customersSorted = _.sortBy(customersToSort, (customer) =>
@@ -88,7 +103,9 @@ function sortCustomer(customersToSort: ICustomer[]): ICustomer[] {
           : -1
       );
 
-      return customersSorted;
+      return orderBy.value === "DESC"
+        ? customersSorted
+        : customersSorted.reverse();
     }
   }
 
@@ -97,10 +114,16 @@ function sortCustomer(customersToSort: ICustomer[]): ICustomer[] {
     (customer) => customer[sortBy.value]
   );
 
-  return customersSorted.reverse();
+  return orderBy.value === "DESC" ? customersSorted.reverse() : customersSorted;
 }
 
 function sortTable(sortByEmit: SORT_CUSTOMER_TABLE_OPTIONS) {
+  if (sortByEmit === sortBy.value) {
+    orderBy.value = orderBy.value === "DESC" ? "ASC" : "DESC";
+  } else {
+    orderBy.value = "DESC";
+  }
+
   sortBy.value = sortByEmit;
 }
 </script>
