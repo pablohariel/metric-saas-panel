@@ -23,6 +23,7 @@
 .between-periods-card__datapicker-wrapper {
   display: flex;
   align-items: center;
+  max-width: 270px;
   --vdp-selected-bg-color: #2c2c2c;
   --vdp-hover-bg-color: #2c2c2c;
   --vdp-text-color: var(--color-text);
@@ -35,14 +36,26 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  max-width: 120px;
-  margin-left: 10px;
+}
+
+.between-periods-card__datapicker-group:first-of-type {
   margin-right: 10px;
+
+}
+
+.v3dp__input_wrapper {
+  width: auto;
+  padding: 0px 4px;
+}
+
+.v3dp__input_wrapper > input {
+  text-align: right;
 }
 
 .between-periods-card__datapicker {
-  margin-right: 6px;
-  max-width: 82px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  max-width: 84px;
   border: none;
   padding: 0;
   cursor: pointer;
@@ -50,10 +63,12 @@
   font-size: 1.4rem;
   color: var(--color-text);
   transition: color 0.5s;
+  margin: 0 !important;
 }
 
 .between-periods-card__datapicker-group img {
   width: 10px;
+  margin-left: 2px;
 } 
 
 .between-periods-card__datapicker:focus {
@@ -81,7 +96,9 @@
 @media (max-width: 1024px) {
   .between-periods-card__datapicker-group {
     max-width: 100px;
-    margin-left: 10px;
+  }
+
+  .between-periods-card__datapicker-group:first-of-type {
     margin-right: 10px;
   }
 
@@ -105,9 +122,7 @@
     padding-bottom: 4px;
   }
 
-  .between-periods-card__datapicker-group {
-    max-width: 100px;
-    margin-left: 10px;
+  .between-periods-card__datapicker-group:first-of-type {
     margin-right: 10px;
   }
 
@@ -124,14 +139,16 @@
 
 @media (max-width: 468px) {
   .between-periods-card__datapicker-group {
-    max-width: 100px;
-    margin-left: 10px;
-    margin-right: 10px;
+    max-width: 90px;
+  }
+
+  .between-periods-card__datapicker-group:first-of-type {
+    margin-right: 8px;
   }
 
   .between-periods-card__datapicker {
     margin-right: 0px;
-    max-width: 70px;
+    max-width: 66px;
     border: none;
   }
 }

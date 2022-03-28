@@ -13,13 +13,17 @@
 }
 
 .contracts-card__title {
-  margin-top: 10px;
   font-size: 1.4rem;
 }
 
 .contracts-card__icon {
   max-width: 90px;
   max-height: 90px;
+}
+
+.contracts-card__info {
+  margin-top: 14px;
+
 }
 
 @media (max-width: 480px) {
