@@ -10,11 +10,11 @@ import type { SORT_CUSTOMER_TABLE_OPTIONS } from "@/types/sortTableOptions";
 const store = useDataStore();
 const customers = computed(() => store.state.customers);
 
-const resultsPerPage = ref<string>("10");
-const customersToShow = ref<ICustomer[]>(customers.value);
-const searchInputValue = ref<string>("");
-const totalResults = ref<number>(customers.value.length);
-const paginationNumber = ref<number>(0);
+const resultsPerPage = ref("10");
+const customersToShow = ref(customers.value);
+const searchInputValue = ref("");
+const totalResults = ref(customers.value.length);
+const paginationNumber = ref(0);
 const sortBy = ref<SORT_CUSTOMER_TABLE_OPTIONS>("createdAt");
 
 watch([resultsPerPage, searchInputValue], () => {

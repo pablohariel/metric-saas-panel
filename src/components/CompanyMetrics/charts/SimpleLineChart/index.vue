@@ -2,6 +2,8 @@
 import { computed } from "vue";
 import { LineChart } from "vue-chart-3";
 import { Chart, registerables } from "chart.js";
+
+import type { ChartOptions, ChartData } from "chart.js";
 import type { IChurnChartData } from "@/utils/charts/getChurnData";
 import type { ICacChartData } from "@/utils/charts/getCacData";
 
@@ -15,7 +17,7 @@ const props = defineProps<ISimpleLineChartProps>();
 
 Chart.register(...registerables);
 
-const data = computed(() => ({
+const data = computed<ChartData<"line">>(() => ({
   labels: props.data.map((item) => item.month),
 
   datasets: [
@@ -29,7 +31,7 @@ const data = computed(() => ({
   ],
 }));
 
-const options = computed(() => ({
+const options = computed<ChartOptions<"line">>(() => ({
   scales: {
     x: {
       display: false,

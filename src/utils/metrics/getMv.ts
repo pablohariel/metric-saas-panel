@@ -5,7 +5,7 @@ interface IParams {
   deletedContracts: IContract[];
 }
 
-const getMv = ({ deletedContracts }: IParams): string => {
+const getMv = ({ deletedContracts }: IParams): number => {
   let contractsDurationAmount = 0;
 
   for (const deletedContract of deletedContracts) {
@@ -21,17 +21,8 @@ const getMv = ({ deletedContracts }: IParams): string => {
   }
 
   const days = contractsDurationAmount / deletedContracts.length;
-  const years = days / 365;
 
-  if (days > 365) {
-    if (years >= 2) {
-      return `${years.toFixed(2)} anos`;
-    } else {
-      return `${years.toFixed(0)} ano`;
-    }
-  } else {
-    return `${Math.floor(days)} dias`;
-  }
+  return days;
 };
 
 export { getMv };

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { LineChart } from "vue-chart-3";
-import type { ChartOptions } from "chart.js";
 import { Chart, registerables } from "chart.js";
 
+import type { ChartOptions, ChartData } from "chart.js";
 import type { IJoinedDate } from "@/utils/joinDates";
 
 interface ILineChartProps {
@@ -14,7 +14,7 @@ const props = defineProps<ILineChartProps>();
 
 Chart.register(...registerables);
 
-const data = computed(() => ({
+const data = computed<ChartData<"line">>(() => ({
   labels: props.dates.length > 0 ? props.dates.map((date) => date.month) : [],
 
   datasets: [
@@ -30,7 +30,7 @@ const data = computed(() => ({
   ],
 }));
 
-const options = computed<ChartOptions<"bar">>(() => ({
+const options = computed<ChartOptions<"line">>(() => ({
   responsive: true,
   elements: {
     point: {

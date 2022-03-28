@@ -3,6 +3,8 @@ import { computed } from "vue";
 import { DoughnutChart } from "vue-chart-3";
 import { Chart, registerables } from "chart.js";
 
+import type { ChartOptions, ChartData } from "chart.js";
+
 interface IDoughnutChartProps {
   labels: string[];
   data: number[];
@@ -13,7 +15,7 @@ const props = defineProps<IDoughnutChartProps>();
 
 Chart.register(...registerables);
 
-const data = computed(() => ({
+const data = computed<ChartData<"doughnut">>(() => ({
   labels: props.labels,
 
   datasets: [
@@ -26,7 +28,7 @@ const data = computed(() => ({
   ],
 }));
 
-const options = computed(() => ({
+const options = computed<ChartOptions<"doughnut">>(() => ({
   scales: {
     x: {
       display: false,

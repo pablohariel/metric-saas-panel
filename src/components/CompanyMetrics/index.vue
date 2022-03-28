@@ -21,7 +21,7 @@ import LtvIcon from "@/assets/icons/ltv.svg";
 
 const mrrValue = ref(0);
 const arrValue = ref(0);
-const mvValue = ref("");
+const mvValue = ref(0);
 const ltvValue = ref(0);
 
 const store = useDataStore();
@@ -74,7 +74,13 @@ watch(contracts, () => {
         class="company-metrics__mv-card"
         :iconPath="MvIcon"
         title="MV"
-        :value="mvValue"
+        :value="
+          mvValue >= 365
+            ? mvValue / 365 > 1
+              ? `${(mvValue / 365).toFixed(2)} anos`
+              : `${(mvValue / 365).toFixed(0)} ano`
+            : `${Math.floor(mvValue)} dias`
+        "
       />
       <SimpleMetric
         class="company-metrics__ltv-card"
