@@ -32,6 +32,6 @@ Inicie o projeto
 
 ## Variáveis de Ambiente
 
-Para rodar este projeto, você precisa adicionar a seguinte variável de ambiente no seu arquivo .env
+Para rodar este projeto, você precisa adicionar a seguinte variável de ambiente no seu arquivo .env contendo o token de sessão da API
 
 `VITE_API_TOKEN`
