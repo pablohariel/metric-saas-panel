@@ -37,7 +37,7 @@ function sortTable(sortBy: SORT_CUSTOMER_TABLE_OPTIONS) {
           scope="col"
           @click="() => sortTable('totalValue')"
         >
-          Contrato
+          Valor do Contrato
         </th>
         <th
           class="customer-table__acquisition-date"
@@ -114,7 +114,7 @@ function sortTable(sortBy: SORT_CUSTOMER_TABLE_OPTIONS) {
           scope="col"
           @click="() => sortTable('images')"
         >
-          Imagens
+          Total de imagens
         </th>
         <th
           class="customer-table__condominiums"
@@ -143,7 +143,7 @@ function sortTable(sortBy: SORT_CUSTOMER_TABLE_OPTIONS) {
       <tr
         class="customer-table__row"
         v-for="customer in props.customers"
-        :key="customer.contract.createdAt + Math.random() * 10"
+        :key="customer.contract.createdAt + Math.random()"
       >
         <td class="customer-table__data">{{ customer.customerName }}</td>
         <td class="customer-table__data">

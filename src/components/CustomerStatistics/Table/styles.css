@@ -103,3 +103,69 @@ th {
   text-align: center;
   color: var(--color-text);
 }
+
+@media (max-width: 480px) {
+  .customer-table__client {
+    min-width: 148px;
+  }
+  
+  .customer-table__contract {
+    min-width: 110px;
+  }
+  
+  .customer-table__acquisition-date {
+    min-width: 136px;
+  }
+  
+  .customer-table__payment-method {
+    min-width: 202px;
+  }
+  
+  .customer-table__users {
+    min-width: 78px;
+  }
+  
+  .customer-table__last-lead {
+    min-width: 170px;
+  }
+  
+  .customer-table__last-property {
+    min-width: 170px;
+  }
+  
+  .customer-table__customers {
+    min-width: 106px;
+  }
+  
+  .customer-table__calls {
+    min-width: 140px;
+  }
+  
+  .customer-table__properties {
+    min-width: 100px;
+  }
+  
+  .customer-table__outdated-properties {
+    min-width: 170px;
+  }
+  
+  .customer-table__inactive-properties {
+    min-width: 120px;
+  }
+  
+  .customer-table__images {
+    min-width: 100px;
+  }
+  
+  .customer-table__condominiums {
+    min-width: 134px;
+  }
+  
+  .customer-table__portals {
+    min-width: 80px;
+  }
+  
+  .customer-table__notes {
+    min-width: 170px;
+  }
+}

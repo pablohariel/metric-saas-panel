@@ -1,5 +1,5 @@
 const formatPaymentMethod = (
-  paymentMethod: "billet" | "credit_card" | undefined
+  paymentMethod: "billet" | "credit_card" | null
 ): string => {
   switch (paymentMethod) {
     case "billet": {

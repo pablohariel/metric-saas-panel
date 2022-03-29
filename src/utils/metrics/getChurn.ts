@@ -10,8 +10,12 @@ const getChurn = ({ contracts, initialDate, finalDate }: IParams): number => {
   let activeContractsAmount = 0;
   let canceledContractsAmount = 0;
 
+  initialDate.setHours(0, 0, 0, 0);
+  finalDate.setHours(0, 0, 0, 0);
+
   for (const contract of contracts) {
     const contractCreateDate = new Date(contract.createdAt);
+    contractCreateDate.setHours(0, 0, 0, 0);
 
     if (contractCreateDate <= initialDate) {
       if (contract.deletedAt) {

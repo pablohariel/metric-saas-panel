@@ -1,3 +1,5 @@
+import { addYears } from "date-fns";
+
 import type { IContract } from "@/interfaces/Contract";
 
 interface IParams {
@@ -14,9 +16,9 @@ const groupContracts = ({ contracts }: IParams): IGroupedContract[] => {
   const groupedContracts = [] as IGroupedContract[];
 
   let dateNow = new Date();
-  const dateLastYear = new Date(
-    new Date().setFullYear(dateNow.getFullYear() - 1)
-  );
+  dateNow.setHours(0, 0, 0, 0);
+
+  const dateLastYear = addYears(dateNow, -1);
 
   while (dateNow > dateLastYear) {
     for (const contract of contracts) {
@@ -49,7 +51,6 @@ const groupContracts = ({ contracts }: IParams): IGroupedContract[] => {
         }
       }
     }
-
     dateNow = new Date(dateNow.setMonth(dateNow.getMonth() - 1));
   }
 

@@ -3,7 +3,7 @@ interface ICustomer {
   contract: {
     totalValue: number;
     createdAt: string;
-    paymentMethod?: "billet" | "credit_card" | undefined;
+    paymentMethod: "billet" | "credit_card" | null;
   };
   users: number;
   lastLead: string;
