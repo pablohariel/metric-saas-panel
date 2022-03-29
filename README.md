@@ -35,3 +35,7 @@ Inicie o projeto
 Para rodar este projeto, você precisa adicionar a seguinte variável de ambiente no seu arquivo .env contendo o token de sessão da API
 
 `VITE_API_TOKEN`
+
+Caso queira trocar o endereço de conexão padrão da API, basta criar outra variável de ambiente contendo a URL desejada
+
+`VITE_API_URL`
